@@ -1,0 +1,84 @@
+body{
+    padding: 2%;
+}
+
+#month_num{
+    width: 50%;
+    text-align: right;
+    font-size:1em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 50%;
+    margin-top: 2%;
+    margin-bottom:1%;
+
+}
+
+#month_num td{
+    width: 50px;
+}  
+
+#red{
+    color: rgb(247, 93, 79);
+}
+
+#frame{
+    width:100%;
+    height: 400px;
+}
+
+.data{
+    width: 25%;
+    text-align: center;
+}
+
+#month{
+    height:100px;
+    font-size: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+#image{
+
+    width:80%;
+    height: 615px;
+    margin-top: 23%;
+}
+
+
+#calendar{
+    width: 97%;
+    height: 650px;
+    margin-top: 5%;
+    margin-left: 3%;
+    border-collapse: collapse;
+    text-align: right;
+    
+}
+
+#calendar td{
+    border: 1px solid black;
+    padding-bottom: 5%;
+    padding-right: 1%;
+}
+
+#calendar td:first-child{
+    color: rgb(247, 93, 79);
+}
+
+.day{
+    width: 14%;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 10px;
+}
+
+.empty{
+    background-color: rgb(245, 245, 245);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
