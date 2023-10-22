@@ -1,0 +1,74 @@
+body{
+    background-color: rgb(221, 221, 221);
+}
+
+#frame{
+    background-color: rgb(52, 52, 56);
+    border-radius: 15px;
+    box-shadow: 3px 3px 20px rgb(29, 29, 29);
+    text-align: center;
+    padding: 1%;
+    width: 25%;
+    margin: auto;
+    margin-top: 7%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+#login_text{
+    font-size: xx-large;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 5%;
+    margin-top: 10%;
+    text-decoration-line: underline;
+    text-decoration-color: rgb(52, 176, 52);
+    text-underline-offset: 10px ;
+}
+
+#login{
+    margin-top: 15%;
+}
+
+#ID, #PW{
+    text-align: left;
+    width: 75%;
+    height: 40px;
+    margin-bottom: 5%;
+    border: none;
+    text-indent: 20px;
+    outline: none;
+}
+
+
+#savePW{
+    font-size: 0.8em;
+    text-align: left;
+    padding-left: 15%;
+    color: white;
+    margin-top: 5%;
+}
+
+#check{
+    width: 15px;
+}
+
+span{
+    vertical-align: 1.5px;
+}
+
+#bt{
+    width: 75%;
+    height: 45px;
+    background-color: rgb(52, 176, 52);
+    color: white;
+    font-weight:bold;
+    border:none;
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+
+#ID, #PW, #bt{
+    border-radius: 20px;
+}
