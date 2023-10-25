@@ -1,28 +1,18 @@
 *{
     box-sizing: border-box;
-    color:white;
 }
 
 .main{
-    text-align: center;
     width: 100%;
-    height: 850px;
+    height: 900px;
     display: flex;
     justify-content: center;
-}
-
-.signup{
-    background-color: lightcoral;
-}
-
-.login {
-    background-color: lightblue;
-
+    z-index: 1;
 }
 
 .frame1{
-    width: 100%;
-    height: 850px;
+    width: 50%;
+    height: 920px;
     padding: 20px;
 }
 
@@ -31,43 +21,103 @@
 }
 
 label{
-    /* background-color: red; */
-    font-size: 2em;
-    margin-top:150px;
+    font-size: 4em;
+    font-weight: bolder;
+    color: #1E3050;
+    margin-top:180px;
     margin-bottom: 100px;
+    margin-left: 200px;
 }
 
+.signupLabel{
+    margin-bottom: 60px;
+}
+
+/* .text{
+    font-size: 4em;
+    font-weight: bolder;
+    position: absolute;
+    color: white;
+    margin-top:180px;
+    margin-left: 200px;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    display: flex;
+    padding:30px;
+} */
+
 input{
-    width: 40%;
+    width: 500px;
     height: 50px;
-    margin: auto;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: none;
-    text-align: center;
+    margin:auto;
+    margin-bottom: 40px;
+    border:none;
+    border-bottom: 1px solid lightgrey;
+    text-indent: 50px;
     text-decoration-line: none;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 15px;
+    outline: none;
+}
+
+input:focus{
+    border-bottom: 1.5px solid #1E3050;
 }
 
 button{
-    width: 40%;
-    height: 50px;
+    width: 500px;
+    height: 60px;
     margin: auto;
-    margin-top: 50px;
-    border-radius: 10px;
-    border: 1px solid black;
-    background-color: black;
+    margin-top: 80px;
+    border-radius: 15px;
+    border: none;
+    background-color: #1E3050;
     color:white;
-
+    box-shadow: 1px 1px 5px black;
+    font-size: 1em;
 }
 
-.signup:hover{
-    width:200%;
+.box{
+    background-color: #1E3050;
+    width: 50%;
+    height: 950px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    clear: both;
+    border-radius: 0px 40px 40px 0px;
+
+    /* display: none; */
 }
 
-.login:hover{
-    width:200%;
+.box:hover{
+    animation-name: box;
+    animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    
 }
 
-@keyframes a{
 
+
+
+@keyframes box {
+    0%{width:50%; }
+    50%{width: 50%; border-radius: 40px;}
+    100%{width:50%; transform: translateX(100%); border-radius: 40px 0px 0px 40px;}  
+}
+
+.user{
+    background-image: url(../images/user.svg);
+}
+.email{
+    background-image: url(../images/email.svg);
+}
+
+.pw{
+    background-image: url(../images/pw.svg);
 }
