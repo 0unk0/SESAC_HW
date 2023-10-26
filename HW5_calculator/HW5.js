@@ -1,5 +1,5 @@
 var result = " ";
-var temp="";
+// var temp="";
 
 function display(num){
     text = document.getElementsByClassName("num")[num].innerText;
@@ -11,9 +11,13 @@ function display(num){
 
 
 function cal(operator){
+    i=result.length;
 
     switch(operator){
         case 0: 
+            if(result[i-1]==="+"){
+                break;
+            }
             result+=document.getElementById("text").value;
             result+="+";
             document.getElementById("text").value="";
@@ -21,6 +25,9 @@ function cal(operator){
             break;
 
         case 1: 
+            if(result[i-1]==="-"){
+                break;
+            }
             result+=document.getElementById("text").value;
             result+="-";
             document.getElementById("text").value="";
@@ -28,6 +35,9 @@ function cal(operator){
             break;
 
         case 2: 
+            if(result[i-1]==="*"){
+                break;
+            }
             result+=document.getElementById("text").value;
             result+="*";
             document.getElementById("text").value="";
@@ -35,6 +45,9 @@ function cal(operator){
             break;
 
         case 3: 
+            if(result[i-1]==="/"){
+                break;
+            }
             result+=document.getElementById("text").value;
             result+="/";
             document.getElementById("text").value="";
@@ -47,6 +60,7 @@ function cal(operator){
             document.getElementById("text").value=total;
             console.log(result);
             console.log(total);
+            
             break;
 
         case 5: 
@@ -55,6 +69,7 @@ function cal(operator){
             break;
 
     }
+
 
 
 }

@@ -3,32 +3,58 @@
 }
 
 .frame1{
-    /* background-color: lightblue; */
+    background-color: rgb(230, 235, 240);
     width: 400px;
     margin: auto;
     margin-top: 10%;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(230, 235, 240);
 }
 
 input{
     /* margin: 10%; */
-    /* background-color: lightcoral; */
+    background-color: white;
     width: 375px;
-    height: 70px;
+    height: 100px;
     margin: 10px;
-    text-align: center;
-    
+    margin-top: 20px;
+    text-align: left;
+    text-indent: 10%;
+    border: none;
+    border-radius: 15px;
+    color:black;
+    font-size: 1.8em; 
+    box-shadow: 0px 0px 2px 5px rgb(230, 235, 240) inset;
+}
+
+input:focus{
+    outline: none;
 }
 
 table{
-    width: 100%;
+    width: 400px;
     padding: 10px;
+    border-spacing: 10px;
 }
+
 
 table td{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    background-color: rgb(233, 233, 233);
-
+    width: 25%;
+    height: 50px;
+    background-color: white;
+    color:grey;
+    border-radius: 20px;
+    padding:10%;
+    font-size: 1em;
+    box-shadow: 0px 0px 5px rgb(222, 238, 239);
 }
+
+.operator{
+    background-color: aliceblue;
+}
+
+/* .result{
+    position: absolute;
+
+} */
