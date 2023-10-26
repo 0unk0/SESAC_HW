@@ -15,8 +15,8 @@ function cal(operator){
 
     switch(operator){
         case 0: 
-            if(result[i-1]==="+"){
-                break;
+            if(result[i-1]=="+" || result[i-1]=="-" || result[i-1]=="*" || result[i-1]=="/"){
+                result.slice(0,-1);
             }
             result+=document.getElementById("text").value;
             result+="+";
@@ -25,9 +25,9 @@ function cal(operator){
             break;
 
         case 1: 
-            if(result[i-1]==="-"){
-                break;
-            }
+            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
+            //     result.slice(0,-1);
+            // }
             result+=document.getElementById("text").value;
             result+="-";
             document.getElementById("text").value="";
@@ -35,9 +35,9 @@ function cal(operator){
             break;
 
         case 2: 
-            if(result[i-1]==="*"){
-                break;
-            }
+            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
+            //     result.slice(0,-1);
+            // }
             result+=document.getElementById("text").value;
             result+="*";
             document.getElementById("text").value="";
@@ -45,9 +45,9 @@ function cal(operator){
             break;
 
         case 3: 
-            if(result[i-1]==="/"){
-                break;
-            }
+            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
+            //     result.slice(0,-1);
+            // }   
             result+=document.getElementById("text").value;
             result+="/";
             document.getElementById("text").value="";
