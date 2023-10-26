@@ -1,74 +1,57 @@
-var result = " ";
-// var temp="";
+var result = "";
 
 function display(num){
+    i=result.length;
+
+    // 끝에 "="이 붙어있으므로 연산 후의 값이고, 숫자가 클릭 된 상황이니까 모든 값 초기화
+    if(result.substring(i-1)==="="){
+        // result=result.slice(0, i-1);
+        document.getElementById("text").value="";
+        result="";
+    }
+
     text = document.getElementsByClassName("num")[num].innerText;
-
     document.getElementById("text").value+=text;
-
-        // console.log(text);
+    result+=text;
 }
 
 
 function cal(operator){
+    text = document.getElementsByClassName("operator")[operator].innerText;
+    
     i=result.length;
 
-    switch(operator){
-        case 0: 
-            if(result[i-1]=="+" || result[i-1]=="-" || result[i-1]=="*" || result[i-1]=="/"){
-                result.slice(0,-1);
-            }
-            result+=document.getElementById("text").value;
-            result+="+";
-            document.getElementById("text").value="";
-            // console.log(result);
-            break;
+   if(text==="="){
+    total=eval(result);
+    document.getElementById("text").value=total;
+    result=total+"="; // 연산 후 result에 =을 붙임
+    console.log(result);
 
-        case 1: 
-            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
-            //     result.slice(0,-1);
-            // }
-            result+=document.getElementById("text").value;
-            result+="-";
-            document.getElementById("text").value="";
-            // console.log(result);
-            break;
+   }
 
-        case 2: 
-            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
-            //     result.slice(0,-1);
-            // }
-            result+=document.getElementById("text").value;
-            result+="*";
-            document.getElementById("text").value="";
-            // console.log(result);
-            break;
+   else if(text==="C"){
+    document.getElementById("text").value="";
+    result="";
+   }       
 
-        case 3: 
-            // if(result[i-1]==="+" || result[i-1]==="-" || result[i-1]==="*" || result[i-1]==="/"){
-            //     result.slice(0,-1);
-            // }   
-            result+=document.getElementById("text").value;
-            result+="/";
-            document.getElementById("text").value="";
-            // console.log(result);
-            break;
+   else{
+        // 연산자 반복되면 result에 있던 연산자 삭제 후 click한 연산자를 붙임
+        if(result.substring(i-1)==="+"|| result.substring(i-1)==="-" || result.substring(i-1)==="*" || result.substring(i-1)==="/"){
+            result=result.slice(0, i-1);
+            result+=text;
+            document.getElementById("text").value=result;
+            return;
+        }
 
-        case 4: 
-            result+=document.getElementById("text").value;
-            total=eval(result);
-            document.getElementById("text").value=total;
-            console.log(result);
-            console.log(total);
-            
-            break;
+        // 끝에 "="이 붙어있으므로 연산 후의 값이고, 연산자 클릭 된 상황이니까 끝에 붙은 "="" 삭제하고 이어서 계산
+        if(result.substring(i-1)==="="){
+            result=result.slice(0, i-1);
+            document.getElementById("text").value=result;
+        }
 
-        case 5: 
-            document.getElementById("text").value="";
-            result="";
-            break;
-
-    }
+        result+=text;
+        document.getElementById("text").value+=text;
+   }
 
 
 
