@@ -4,62 +4,33 @@
         <link rel="stylesheet" href="HW5.css">
     </head>
     <body>
-        <div class="frame1">
-            <input id="text" type="text">
-            <!-- <input id="result" type="text"> -->
+        <div class="calculator">
+            <div class="screen">
+                <input id="cal" class="cal" type="text" readonly>
+                <input id="result" class="result" type="text" readonly>
+            </div>
+            <div class="bt">
+                <button class="operator" onclick="cal(0)">+</td>
+                <button class="operator" onclick="cal(1)">-</td>
+                <button class="operator" onclick="cal(2)">*</td>
+                <button class="operator" onclick="cal(3)">/</td>
 
-            <table>
-                <tr>
-                    <td class="operator" onclick="cal(0)">+</td>
-                    <td class="operator" onclick="cal(1)">-</td>
-                    <td class="operator" onclick="cal(2)">*</td>
-                    <td class="operator" onclick="cal(3)">/</td>
-                </tr>
-                <tr>
-                    <td class="num" onclick="num(0)">7</td>
-                    <td class="num" onclick="num(1)">8</td>
-                    <td class="num" onclick="num(2)">9</td>
-                    <td class="operator" onclick="cal(4)">=</td>
-                </tr>
-                <tr>
-                    <td class="num" onclick="num(3)">4</td>
-                    <td class="num" onclick="num(4)">5</td>
-                    <td class="num" onclick="num(5)">6</td>
-                    <td class="operator" onclick="cal(5)">C</td>
-                </tr>
-                <tr>
-                    <td class="num" onclick="num(6)">1</td>
-                    <td class="num" onclick="num(7)">2</td>
-                    <td class="num" onclick="num(8)">3</td>
-                    <td class="num" onclick="num(9)">0</td>
-                </tr>
-            </table>
+                <button class="num" onclick="num(0)">7</td>
+                <button class="num" onclick="num(1)">8</td>
+                <button class="num" onclick="num(2)">9</td>
+                <button class="operator" onclick="cal(4)">=</td>
+
+                <button class="num" onclick="num(3)">4</td>
+                <button class="num" onclick="num(4)">5</td>
+                <button class="num" onclick="num(5)">6</td>
+                <button class="operator C" onclick="cal(5)">C</td>
+
+                <button class="num" onclick="num(6)">1</td>
+                <button class="num" onclick="num(7)">2</td>
+                <button class="num" onclick="num(8)">3</td>
+                <button class="num" onclick="num(9)">0</td>
+            </div>
         </div>
         <script src="HW5.js"></script>
     </body>
 </html>
-
-<!-- <tr>
-    <td id="+" onclick="cal()">+</td>
-    <td id="-" onclick="cal()">-</td>
-    <td id=""* onclick="cal()">*</td>
-    <td id="/" onclick="cal()">/</td>
-</tr>
-<tr>
-    <td id="7" onclick="cal()">7</td>
-    <td id="8" onclick="cal()">8</td>
-    <td id="9" onclick="cal()">9</td>
-    <td id="=" onclick="cal()">=</td>
-</tr>
-<tr>
-    <td id="4" onclick="cal()">4</td>
-    <td id="5" onclick="cal()">5</td>
-    <td id="6" onclick="cal()">6</td>
-    <td id="C" onclick="cal()">C</td>
-</tr>
-<tr>
-    <td id="1" onclick="cal()">1</td>
-    <td id="2" onclick="cal()">2</td>
-    <td id="3" onclick="cal()">3</td>
-    <td id="0" onclick="cal()">0</td>
-</tr> -->
