@@ -79,7 +79,7 @@ button{
     font-size: 1em;
 }
 
-.box{
+#box{
     /* background-color: #1E3050; */
     width: 50%;
     height: 900px;
@@ -94,21 +94,31 @@ button{
 
 }
 
-.box:hover{
-    animation-name: box;
+.box_animation{
+    animation-name: box_animation;
     animation-duration: 1.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
+    /* animation-direction: reverse; */
 }
 
-@keyframes box {
+.box_animation_reverse{
+    animation-name: box_animation_reverse;
+    animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation-direction: reverse;
+}
+
+@keyframes box_animation {
     0%{width:50%; }
     40%{width: 50%; border-radius: 500px;}
     100%{width:50%; transform: translateX(100%); border-radius: 500px 0px 0px 500px;}  
 }
 
-.box:hover + text{
+/* #box:hover + text{
     animation-name:text;
     animation-duration: 0.2s;
     animation-iteration-count: 1;
@@ -120,7 +130,7 @@ button{
 @keyframes text{
     0%{color: white;}
     100%{color:#1E3050;}
-}
+} */
 
 .user{
     background-image: url(../images/user.svg);
