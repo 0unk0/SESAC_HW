@@ -77,22 +77,36 @@ function cal(o){
     }
   }
 
-  else if(error_flag===1){
+  else if(error_flag === 1 && (o === "+" || o === "*" || o === "/")){
     document.getElementById("result").value = "ERROR";
     number.length=0;
     operator.length=0;
-    error_flag=1;
   }
 
   
   // 연산자 버튼
   else{
+    if(error_flag ===1 ){
+      document.getElementById("result").value = o;
+      operator.push(o);
+      number.length=0;
+      number[0]=0;
+      temp="";
+      console.log(number);
+      console.log(operator);
+      count=1;
+
+      error_flag=0;
+    }
+
     //연산자 중복시
-    if(number.length>0 && number.length<=operator.length){
+    else if(number.length>0 && number.length<=operator.length){
       operator[operator.length-1]=o;
       count--;
     }
+
     else{
+      
       document.getElementById("result").value += o;
 
       operator.push(o);
