@@ -1,96 +1,101 @@
-var result = "";
+number = "";
+list = [];
+count=0;
 
+// document.getElementById("result").value=0;
 function num(num) {
   document.getElementById("result").value += num;
-  result += num;
-  console.log(result);
+  number += num;
 }
-
-// function num(num) {
-//   i = result.length;
-
-//   // 끝에 "="이 붙어있으므로 연산 후의 값이고, 숫자가 클릭 된 상황이니까 모든 값 초기화
-//   if (result.substring(i - 1) === "=") {
-//     // result=result.slice(0, i-1);
-//     document.getElementById("text").value = "";
-//     result = "";
-//   }
-
-//   text = document.getElementsByClassName("num")[num].innerText;
-//   document.getElementById("text").value += text;
-//   result += text;
-// }
 
 function cal(operator){
-
+  count++;
+  // 초기화 버튼
   if(operator==="C"){
     document.getElementById("result").value = "";
-    result = "";
+    list.length=0;
+    number="";
+    console.log(list);
+  }
+
+  //결과 계산 버튼
+  else if(operator==="="){
+
+    if(list.length===0){
+      document.getElementById("result").value = "";
+    }
+    else{
+      list.push(parseInt(number));
+      console.log(list);
+      first(list);
+  
+      if(list[0]===Infinity){
+        document.getElementById("result").value = "ERROR";
+        list.length=0;
+      }
+      else{
+        document.getElementById("result").value = list;
+      }
+    }
   }
   
+
+
+  // 연산자 버튼
   else{
     document.getElementById("result").value += operator;
-    result+=operator;
-    console.log(result);
+
+    list.push(parseInt(number)); //숫자 덩어리로 받기위해 여기서 parse 함
+    list.push(operator);
+  
+    number = ""; // 숫자 새로 받기 위함
+    console.log(list);
+  }
+
+  // if(list[-1]==="+" || list[-1]==="-" || list[-1]==="*" || list[-1]==="/"){
+  //   list.splice(list.length-3, 2, operator); 
+  //  }
+
+  
+}
+
+
+// 곱셈, 나눗셈 제거
+function first(list){
+  console.log("sum함수 시작");
+
+  for(i=0; i<list.length; i++){
+    if(list[i]==='*'){
+      list[i-1] *= list[i+1];
+      list.splice(i,2);
+      i--;
+    }
+    else if(list[i]==='/'){
+      list[i-1] /= list[i+1];
+      list.splice(i,2);
+      i--;
+    }
+  }
+  console.log(list);
+
+  if(list.length>1){
+    second(list);
   }
 }
 
-// function cal(operator) {
-//   text = document.getElementsByClassName("operator")[operator].innerText;
-
-//   i = result.length;
-
-//   if (text === "=") {
-    
-//     total = eval(result);
-
-//     console.log(total);
-//     if(total == Infinity){
-//       document.getElementById("text").value = "NaN";
-//     }
-//     else{
-//       document.getElementById("text").value = total;
-//       result = total + "="; // 연산 후 result에 =을 붙임
-//       console.log(result);
-//     }
-
-//   } 
-  
-//   else if (text === "C") {
-//     document.getElementById("text").value = "";
-//     result = "";
-//   } 
-  
-//   else {
-//     // 연산자 반복 해결 // 연산자 반복되면 result에 있던 연산자 삭제 후 click한 연산자를 붙임
-//     if (
-//       result.substring(i - 1) === "+" ||
-//       result.substring(i - 1) === "-" ||
-//       result.substring(i - 1) === "*" ||
-//       result.substring(i - 1) === "/"
-//     ) {
-//       result = result.slice(0, i - 1);
-//       result += text;
-//       document.getElementById("text").value = result;
-//       return;
-//     }
-
-//     // 이어서 계산 해결 //  끝에 "="이 붙어있으므로 연산 후의 값이고, 연산자 클릭 된 상황이니까 끝에 붙은 "="" 삭제하고 이어서 계산
-//     if (result.substring(i - 1) === "=") {
-//       result = result.slice(0, i - 1);
-//       document.getElementById("text").value = result;
-//     }
-
-//     // 맨 처음에 "*" 또는 "/" 가 오면 삭제
-//     if ((text === "*" && result === "") || (text === "/" && result === "")) {
-//       document.getElementById("text").value = "";
-//       result = "";
-//       return;
-//     } else {
-//       result += text;
-//       document.getElementById("text").value += text;
-//     }
-//   }
-// }
-
-
+//최종 연산
+function second(list){
+  for(j=0; j<list.length; j++){
+    if(list[j]==='+'){
+      list[j-1] += list[j+1];
+      list.splice(j,2);
+      j--;
+    }
+    else if(list[j]==='-'){
+      list[j-1] -= list[j+1];
+      list.splice(j,2);
+      j--;
+    }
+  }
+  console.log(list); 
+}
