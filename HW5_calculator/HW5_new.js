@@ -1,101 +1,183 @@
-number = "";
-list = [];
-count=0;
+number = [0];
+operator = [];
 
-// document.getElementById("result").value=0;
-function num(num) {
-  document.getElementById("result").value += num;
-  number += num;
+temp = ""; // 연산자 입력 전까지의 숫자 저장
+count=0; // 리스트 접근
+
+
+flag=1; // 맨처음이면 숫자 초기화
+error_flag=0;
+
+document.getElementById("result").value = 0;
+
+function num(n) {
+  //맨 처음 숫자 초기화
+  if(flag===1 && operator.length===0){
+    document.getElementById("result").value = n;
+    temp += n;
+    number[count]=parseInt(temp);
+
+    flag=0;
+  }
+
+  else if(error_flag===1){
+    document.getElementById("result").value = n;
+    number.length=0;
+    temp="";
+    count=0;
+    temp += n;
+    number[count]=parseInt(temp);
+
+    error_flag=0;
+  }
+
+  else{
+    //연산 후 재시작
+    document.getElementById("result").value += n;
+    temp += n;
+    number[count]=parseInt(temp);
+  }
 }
 
-function cal(operator){
+function cal(o){
+  flag=0;
   count++;
+
   // 초기화 버튼
-  if(operator==="C"){
-    document.getElementById("result").value = "";
-    list.length=0;
-    number="";
-    console.log(list);
+  if(o==="C"){
+    document.getElementById("result").value = 0;
+    number.length=0;
+    operator.length=0;
+    number[0]=0;
+    temp="";
+    count=0;
+    flag=1;  
+    error_flag=0;
   }
 
   //결과 계산 버튼
-  else if(operator==="="){
-
-    if(list.length===0){
-      document.getElementById("result").value = "";
+  else if(o==="="){
+    
+    // 연산자로 끝난 경우
+    if(number.length===operator.length){
+      count--;
     }
+
     else{
-      list.push(parseInt(number));
-      console.log(list);
-      first(list);
-  
-      if(list[0]===Infinity){
+      first(number,operator);
+
+      console.log(number);
+      // 나누기 0일 때
+      if(number[0]===Infinity || isNaN(number[0])){
         document.getElementById("result").value = "ERROR";
-        list.length=0;
+        number.length=0;
+        operator.length=0;
+        error_flag=1;
       }
+
+
       else{
-        document.getElementById("result").value = list;
+        document.getElementById("result").value = number;
+        total=number[0];
+        number.length=0;
+        operator.length=0;
+        number[0]= total;
+        temp="";
+        count=0;
+        flag=1;
       }
     }
   }
-  
 
-
-  // 연산자 버튼
-  else{
-    document.getElementById("result").value += operator;
-
-    list.push(parseInt(number)); //숫자 덩어리로 받기위해 여기서 parse 함
-    list.push(operator);
-  
-    number = ""; // 숫자 새로 받기 위함
-    console.log(list);
+  else if(error_flag === 1 && (o === "+" || o === "*" || o === "/")){
+    document.getElementById("result").value = "ERROR";
+    number.length=0;
+    operator.length=0;
   }
 
-  // if(list[-1]==="+" || list[-1]==="-" || list[-1]==="*" || list[-1]==="/"){
-  //   list.splice(list.length-3, 2, operator); 
-  //  }
 
-  
+  //연산자 버튼
+  else{
+
+
+    if(error_flag ===1 ){
+      document.getElementById("result").value = o;
+      operator.push(o);
+      number.length=0;
+      number[0]=0;
+      temp="";
+      console.log(number);
+      console.log(operator);
+      count=1;
+
+      error_flag=0;
+    }
+
+    //연산자 중복시
+    else if(number.length>0 && number.length<=operator.length){
+      operator[operator.length-1]=o;
+
+      overlap=document.getElementById("result").value;
+      
+      overlap=overlap.substring(0,overlap.length-1);
+      overlap+=o;
+
+      document.getElementById("result").value=overlap;
+      count--;
+    }
+
+    else{
+      document.getElementById("result").value += o;
+
+      operator.push(o);
+    
+      temp = ""; // 숫자 새로 받기 위함
+    }
+  }
 }
 
 
 // 곱셈, 나눗셈 제거
-function first(list){
-  console.log("sum함수 시작");
+function first(number, operator){
+  console.log("곱셈, 나눗셈 제거 결과");
 
-  for(i=0; i<list.length; i++){
-    if(list[i]==='*'){
-      list[i-1] *= list[i+1];
-      list.splice(i,2);
-      i--;
+  for(i=0; i<number.length; i++){
+    if(operator[i]==='*'){
+      number[i] *= number[i+1];
+      number.splice(i+1,1);
+      operator.splice(i,1);
     }
-    else if(list[i]==='/'){
-      list[i-1] /= list[i+1];
-      list.splice(i,2);
-      i--;
+    else if(operator[i]==='/'){
+      number[i] /= number[i+1];
+      number.splice(i+1,1);
+      operator.splice(i,1);
     }
   }
-  console.log(list);
+  console.log(number);
+  console.log(operator);
 
-  if(list.length>1){
-    second(list);
+  if(number.length>1){
+    second(number, operator);
   }
 }
 
 //최종 연산
-function second(list){
-  for(j=0; j<list.length; j++){
-    if(list[j]==='+'){
-      list[j-1] += list[j+1];
-      list.splice(j,2);
+function second(number, operator){
+  console.log("최종 연산 결과");
+
+  for(j=0; j<number.length; j++){
+    if(operator[j]==='+'){
+      number[j] += number[j+1];
+      number.splice(j+1,1);
+      operator.splice(j,1);
+
       j--;
     }
-    else if(list[j]==='-'){
-      list[j-1] -= list[j+1];
-      list.splice(j,2);
+    else if(operator[j]==='-'){
+      number[j] -= number[j+1];
+      number.splice(j+1,1);
+      operator.splice(j,1);
       j--;
     }
   }
-  console.log(list); 
 }
