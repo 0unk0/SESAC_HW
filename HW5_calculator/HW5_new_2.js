@@ -1,17 +1,35 @@
-temp = "";
-number = [];
+number = [0];
 operator = [];
-count=0;
-minus=0;
+
+temp = ""; // 연산자 입력 전까지의 숫자 저장
+count=0; // 리스트 접근
+
+flag=1; // 맨처음이면 숫자 초기화
+error_flag=0;
+
+document.getElementById("result").value = 0;
 
 function num(n) {
-  // 연산된 결과값 있을 경우 초기화
-  if(number.length===1 && operator.length===0){
+  //맨 처음 숫자 초기화
+  if(flag===1 && operator.length===0){
     document.getElementById("result").value = n;
-    temp = n;
-    number[0]=parseInt(temp);
+    temp += n;
+    number[count]=parseInt(temp);
   }
+
+  else if(error_flag===1){
+    document.getElementById("result").value = n;
+    number.length=0;
+    temp="";
+    count=0;
+    temp += n;
+    number[count]=parseInt(temp);
+
+    error_flag=0;
+  }
+
   else{
+    //연산 후 재시작
     document.getElementById("result").value += n;
     temp += n;
     number[count]=parseInt(temp);
@@ -19,64 +37,53 @@ function num(n) {
 }
 
 function cal(o){
+  flag=0;
   count++;
-  
-  if(minus===1){
-    number[0]*= -1;
-    minus=0;
-  }
-
-  console.log(number.length);
-  console.log(operator.length);
 
   // 초기화 버튼
   if(o==="C"){
-    document.getElementById("result").value = "";
+    document.getElementById("result").value = 0;
     number.length=0;
     operator.length=0;
+    number[0]=0;
     temp="";
-    console.log(number);
-    console.log(operator);
+    count=0;
+    flag=1;  
+    error_flag=0;
   }
 
   //결과 계산 버튼
   else if(o==="="){
-    // 아무것도 안눌렸을 때
-    if(number.length===0){
-      document.getElementById("result").value = "";
+    first(number,operator);
+
+    console.log(number);
+    // 나누기 0일 때
+    if(number[0]===Infinity || isNaN(number[0])){
+      document.getElementById("result").value = "ERROR";
+      number.length=0;
+      operator.length=0;
+      error_flag=1;
     }
 
-    // 숫자만 누르고 = 누를 때
-    else if(number.length===1 && operator.length===0){
+    else{
       document.getElementById("result").value = number;
       total=number[0];
       number.length=0;
       operator.length=0;
       number[0]= total;
+      temp="";
       count=0;
-    }
-
-    else{
-      console.log(number);
-      first(number,operator);
-      
-      // 나누기 0일 때
-      if(number[0]===Infinity){
-        document.getElementById("result").value = "ERROR";
-        number.length=0;
-        operator.length=0;
-      }
-
-      else{
-        document.getElementById("result").value = number;
-        total=number[0];
-        number.length=0;
-        operator.length=0;
-        number[0]= total;
-        count=0;
-      }
+      flag=1;
     }
   }
+
+  else if(error_flag===1){
+    document.getElementById("result").value = "ERROR";
+    number.length=0;
+    operator.length=0;
+    error_flag=1;
+  }
+
   
   // 연산자 버튼
   else{
@@ -85,42 +92,20 @@ function cal(o){
       operator[operator.length-1]=o;
       count--;
     }
-
-    //마이너스로 시작
-    else if(number.length===0 && o==="-"){
-      document.getElementById("result").value = o;
-      minus = 1;
-      count--;
-    }
-    
-    //마이너스로 시작 + 중복
-    // else if(minus=1){
-    //   document.getElementById("result").value += o;
-    //   count--;
-    //   minus=0;
-    // }
-
     else{
       document.getElementById("result").value += o;
 
       operator.push(o);
     
       temp = ""; // 숫자 새로 받기 위함
-      console.log(number);
-      console.log(operator);
     }
-
   }
-
-
-
-  
 }
 
 
 // 곱셈, 나눗셈 제거
 function first(number, operator){
-  console.log("곱셈, 나눗셈 제거");
+  console.log("곱셈, 나눗셈 제거 결과");
 
   for(i=0; i<number.length; i++){
     if(operator[i]==='*'){
@@ -144,7 +129,7 @@ function first(number, operator){
 
 //최종 연산
 function second(number, operator){
-  console.log("최종 연산");
+  console.log("최종 연산 결과");
 
   for(j=0; j<number.length; j++){
     if(operator[j]==='+'){
@@ -161,6 +146,4 @@ function second(number, operator){
       j--;
     }
   }
-  console.log(number); 
-  console.log(operator); 
 }
