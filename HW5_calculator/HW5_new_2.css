@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+.calculator {
+  background-color: rgb(230, 235, 240);
+  width: 400px;
+  margin: auto;
+  margin-top: 150px;
+  text-align: center;
+  border-radius: 10px;
+  /* box-shadow: 0px 0px 10px rgb(230, 235, 240); */
+  box-shadow: 1px 2px 10px rgb(117, 130, 143);
+  overflow: hidden;
+
+}
+
+ .screen{
+  margin-top: 20px;
+ }
+
+ .cal{
+  background-color: white;
+  width: 360px;
+  height: 35px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
+  border: none;
+
+  /* 영역 나눌지 말지 고민 중*/
+  border-bottom: 1px solid rgb(230, 235, 240);
+ }
+
+ .result{
+  background-color: white;
+  width: 360px;
+  height: 65px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  font-size: 1.8em;
+  text-align: right;
+
+ }
+
+ input:focus{
+  outline: none;
+ }
+
+ .bt{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+ }
+
+ button{
+  background-color: white;
+  width: 20%;
+  height: 100px;
+  color: grey;
+  border-radius: 20px;
+  border: none;
+  margin: 1.5%;
+ }
+
+ .operator{
+  background-color: aliceblue;
+ }
+
+ .C{
+  background-color: rgb(255, 253, 240);
+ }
+ /* .input {
+  /* margin: 10%;
+  background-color: white;
+  width: 375px;
+  height: 100px;
+  margin: 10px;
+  margin-top: 20px;
+  text-align: right;
+  text-indent: -10%;
+  padding-right: 20px;
+  padding-left: 20px;
+  border: none;
+  border-radius: 15px;
+  color: black;
+  font-size: 1.8em;
+  box-shadow: 0px 0px 2px 5px rgb(230, 235, 240) inset;
+  overflow: scroll;
+  overflow-x: visible; } */
+
+/*
+input:focus {
+  outline: none;
+}
+
+table {
+  width: 400px;
+  padding: 10px;
+  border-spacing: 10px;
+}
+
+table td {
+  width: 25%;
+  height: 50px;
+  background-color: white;
+  color: grey;
+  border-radius: 20px;
+  padding: 10%;
+  font-size: 1em;
+  box-shadow: 0px 0px 5px rgb(222, 238, 239);
+}
+
+.operator {
+  background-color: aliceblue;
+} */
