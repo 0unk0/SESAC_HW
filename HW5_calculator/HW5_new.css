@@ -49,11 +49,29 @@
   border-radius: 30px;
   border: none;
   margin: 1.5%;
-  box-shadow: 1px 1px 5px rgb(117, 130, 143);
+  box-shadow: 2px 2px 7px rgb(87, 96, 106);
+ }
+
+ button:active{
+  transform: translateX(2px);
+  transform: translateY(2px);
+  box-shadow: 2px 2px 7px rgb(117, 130, 143);
+ }
+
+ .num:hover{
+  background-color: rgb(237, 237, 237);
+ }
+ .operator:hover{
+  background-color: rgb(212, 235, 254);
+ }
+
+.C:hover{
+  background-color:rgb(255, 251, 223);
  }
 
  .operator{
   background-color: rgb(233, 245, 255);
+  
  }
 
  .C{

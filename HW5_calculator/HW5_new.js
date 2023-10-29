@@ -140,17 +140,21 @@ function cal(o){
 // 곱셈, 나눗셈 제거
 function first(number, operator){
   console.log("곱셈, 나눗셈 제거 결과");
+  console.log(number);
+  console.log(operator);
 
   for(i=0; i<number.length; i++){
     if(operator[i]==='*'){
       number[i] *= number[i+1];
       number.splice(i+1,1);
       operator.splice(i,1);
+      i--;
     }
     else if(operator[i]==='/'){
       number[i] /= number[i+1];
       number.splice(i+1,1);
       operator.splice(i,1);
+      i--;
     }
   }
   console.log(number);
