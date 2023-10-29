@@ -19,7 +19,7 @@ function num(n) {
 
     flag=0;
   }
-
+  //에러 뒤 재시작
   else if(error_flag===1){
     document.getElementById("result").value = n;
     number.length=0;
@@ -68,7 +68,7 @@ function cal(o){
 
       console.log(number);
       // 나누기 0일 때
-      if(number[0]===Infinity || isNaN(number[0])){
+      if(number[0]===Infinity|| number[0]=== -Infinity || isNaN(number[0])){
         document.getElementById("result").value = "ERROR";
         number.length=0;
         operator.length=0;
@@ -98,8 +98,6 @@ function cal(o){
 
   //연산자 버튼
   else{
-
-
     if(error_flag ===1 ){
       document.getElementById("result").value = o;
       operator.push(o);
@@ -115,15 +113,39 @@ function cal(o){
 
     //연산자 중복시
     else if(number.length>0 && number.length<=operator.length){
-      operator[operator.length-1]=o;
+      // 곱하기 뒤 마이너스 반영
+      if(temp==="" && ((operator[operator.length-1]==="*"&& o==="-") || (operator[operator.length-1]==="/" && o==="-"))){
+        document.getElementById("result").value += o;
+        count--;
+        temp = "-";
+      }
+      // 곱하기 뒤 마이너스 뒤 마이너스 중복
+      else if(temp==="-"&& o==="-"){
+        overlap=document.getElementById("result").value;
+        overlap=overlap.substring(0,overlap.length-1);
+        document.getElementById("result").value=overlap;
 
-      overlap=document.getElementById("result").value;
-      
-      overlap=overlap.substring(0,overlap.length-1);
-      overlap+=o;
+        temp="";
+        count--;
+        return;
+      }
+      // 곱하기 뒤 마이너스 뒤 연산자 중복
+      else if(temp==="-"){
+        count--;
+        return;
+      }
+      else{
+        operator[operator.length-1]=o;
 
-      document.getElementById("result").value=overlap;
-      count--;
+        overlap=document.getElementById("result").value;
+        
+        overlap=overlap.substring(0,overlap.length-1);
+        overlap+=o;
+  
+        document.getElementById("result").value=overlap;
+        count--;
+      }
+
     }
 
     else{
