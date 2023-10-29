@@ -26,29 +26,29 @@ label{
     color: #1E3050;
     margin-top:180px;
     margin-bottom: 100px;
-    margin-left: 200px;
+    margin-left: 22%;
 }
 
 .signupLabel{
     margin-bottom: 60px;
 }
 
-/* .text{
+.text{
     font-size: 4em;
     font-weight: bolder;
     position: absolute;
     color: white;
-    margin-top:180px;
-    margin-left: 200px;
+    margin-top:178px;
+    margin-left: 198px;
     top: 0px;
     left: 0px;
     z-index: 4;
     display: flex;
     padding:30px;
-} */
+}
 
 input{
-    width: 500px;
+    width: 55%;
     height: 50px;
     margin:auto;
     margin-bottom: 40px;
@@ -66,8 +66,8 @@ input:focus{
     border-bottom: 1.5px solid #1E3050;
 }
 
-button{
-    width: 500px;
+form button{
+    width: 55%;
     height: 60px;
     margin: auto;
     margin-top: 80px;
@@ -79,7 +79,7 @@ button{
     font-size: 1em;
 }
 
-.box{
+#box{
     /* background-color: #1E3050; */
     width: 50%;
     height: 900px;
@@ -91,26 +91,39 @@ button{
     border-radius: 0px 500px 500px 0px;
     /* display: none; */
     background-image:linear-gradient(90deg, #475a7b, #1E3050);
-
 }
 
-.box:hover{
-    animation-name: box;
+
+.box_animation{
+    animation-name: box_animation;
     animation-duration: 1.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
-    
+    transform:translateX(100px) 1.2s;
 }
 
+.box_animation_reverse{
+    
+    animation-name: box_animation_reverse;
+    animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation-direction: reverse;
+}
 
-
-
-@keyframes box {
+@keyframes box_animation {
     0%{width:50%; }
     40%{width: 50%; border-radius: 500px;}
     100%{width:50%; transform: translateX(100%); border-radius: 500px 0px 0px 500px;}  
 }
+@keyframes box_animation_reverse {
+    0%{width:50%;  }
+    60%{width: 50%; border-radius: 500px;}
+    100%{width:50%; transform: translateX(100%); border-radius: 500px 0px 0px 500px;}  
+}
+
 
 .user{
     background-image: url(../images/user.svg);
