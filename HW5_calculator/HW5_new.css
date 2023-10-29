@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -26,6 +28,7 @@
   font-size: 2em;
   text-align: right;
   box-shadow: inset 0px 0px 10px rgb(117, 130, 143);
+  font-family: "chakra petch";
 
  }
 
@@ -50,6 +53,7 @@
   border: none;
   margin: 1.5%;
   box-shadow: 2px 2px 7px rgb(87, 96, 106);
+  font-family: "chakra petch";
  }
 
  button:active{
