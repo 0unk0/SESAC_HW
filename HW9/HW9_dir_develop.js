@@ -2,8 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 let directory = '/Users/yunk._.k/SESAC/SESAC_HW';
-let tree = "\u251C"+"\u2500";
-let tree_end = "\u2514"+"\u2500";
+
+let tree = "├─";
+let tree_end = "└─";
 
 function ls(directoryPath, prefix){
     const files = fs.readdirSync(directoryPath);
@@ -18,7 +19,12 @@ function ls(directoryPath, prefix){
             console.log(prefix + tree, file);
         }
         if(stats.isDirectory()){
-            ls(filePath, (prefix + "   "));
+            if(files[files.length-1]===file){
+                ls(filePath, (prefix + "   "));
+            } else{
+                ls(filePath, (prefix + "│  "));
+            }
+            
         }  
     });
 }
