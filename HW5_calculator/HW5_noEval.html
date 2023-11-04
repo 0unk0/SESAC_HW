@@ -1,26 +1,26 @@
 <!DOCTYPE html>
     <head>
         <title>윤굥계산기</title>
-        <link rel="stylesheet" href="HW5_new.css">
+        <link rel="stylesheet" href="HW5_noEval.css">
     </head>
     <body>
         <div class="calculator">
             <input id="result" class="result" type="text" readonly>
             <div class="bt">
-                <button class="operator" onclick="cal('+')">+</td>
-                <button class="operator" onclick="cal('-')">-</td>
-                <button class="operator" onclick="cal('*')">*</td>
-                <button class="operator" onclick="cal('/')">/</td>
+                <button class="operator" onclick="op('+')">+</td>
+                <button class="operator" onclick="op('-')">-</td>
+                <button class="operator" onclick="op('*')">*</td>
+                <button class="operator" onclick="op('/')">/</td>
 
                 <button class="num" onclick="num(7)">7</td>
                 <button class="num" onclick="num(8)">8</td>
                 <button class="num" onclick="num(9)">9</td>
-                <button class="operator" onclick="cal('=')">=</td>
+                <button class="operator" onclick="result()">=</td>
 
                 <button class="num" onclick="num(4)">4</td>
                 <button class="num" onclick="num(5)">5</td>
                 <button class="num" onclick="num(6)">6</td>
-                <button class="operator C" onclick="cal('C')">C</td>
+                <button class="operator C" onclick="clearDisplay()">C</td>
 
                 <button class="num" onclick="num(1)">1</td>
                 <button class="num" onclick="num(2)">2</td>
@@ -28,6 +28,6 @@
                 <button class="num" onclick="num(0)">0</td>
             </div>
         </div>
-        <script src="HW5_new.js"></script>
+        <script src="HW5_noEval.js"></script>
     </body>
 </html>
