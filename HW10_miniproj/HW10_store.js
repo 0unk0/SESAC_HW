@@ -1,6 +1,6 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import {generateAddress} from './HW10_data_addr.js'
+import {generateAddress} from './HW10_data.js'
 
 const typeList = ['스타벅스', '투썸플레이스', '이디야', '커피빈'];
 const nameList = {
@@ -49,8 +49,6 @@ function storeCSV(store){
     writeFile('store.csv', header+storeData, 'utf-8', (err) => {
         if(err){
             console.log("store.csv 파일 작성 실패");
-        } else{
-            console.log("store.csv 파일 작성 성공");
         }
     })
 }

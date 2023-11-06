@@ -1,7 +1,7 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
 
-import { generateAddress } from './HW10_data_addr.js';
+import { generateAddress, generatedate } from './HW10_data.js';
 
 const today = new Date();
 const surnameList = ['김', '이', '박','최', '정', '강', '조', '윤', '장', '임', '한', '오', '서', '신', '권'];
@@ -23,18 +23,11 @@ function generateAge(){
     return Math.floor(Math.random() * 45) + 10;
 }
 
-function generateBirthdate(age){
+export function generateBirthdate(age){
     let year = today.getFullYear() - age + 1;
-    let month = Math.floor(Math.random() * 11) + 1;
-    let day = 0;
-    
-    [1, 3, 5, 7, 8, 10, 12].includes(month)
-    ? day = Math.floor(Math.random() * 30) + 1
-    : [4, 6, 9, 11].includes(month)
-        ? day = Math.floor(Math.random() * 29) + 1
-        : day = Math.floor(Math.random() * 27) + 1 ;
+    let date = generatedate();
 
-    return `${year}-${String(month).padStart(2, 0)}-${String(day).padStart(2,0)}`;
+    return `${year}-${date}`;
 }
 
 function generateGender(){
@@ -67,8 +60,6 @@ function userCSV(user){
     writeFile('user.csv', header+userData, 'utf-8', (err) => {
         if(err){
             console.log("user.csv 파일 작성 실패");
-        } else{
-            console.log("user.csv 파일 작성 성공");
         }
     });
 }
