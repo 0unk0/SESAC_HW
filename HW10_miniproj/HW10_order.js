@@ -23,9 +23,9 @@ function splitID(CSVdata){
 
 function orderAt() {
     let date = generatedate();
-    let hour = Math.floor(Math.random() * 25);
-    let min = Math.floor(Math.random() * 61);
-    let sec = Math.floor(Math.random() * 61);
+    let hour = Math.floor(Math.random() * 24);
+    let min = Math.floor(Math.random() * 60);
+    let sec = Math.floor(Math.random() * 60);
 
     return `2023-${date} ${String(hour).padStart(2, 0)}:${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`;
 }
