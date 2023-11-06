@@ -1,25 +1,6 @@
-import {writeFile, readFileSync} from 'node:fs';
+import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import { generatedate } from './HW10_data.js';
-
-function readCSV(csvName){
-    let CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
-        let fileName = csvName.substring(2);
-        if(err) {
-            console.log(`${fileName}_ID 읽기 실패`);
-        }
-    })
-    return CSVData;
-}
-
-function splitID(CSVdata){
-    let Id = [];
-    let IdData = CSVdata.split("\n");
-    for(let i = 1; i < IdData.length; i++){
-    Id.push( IdData[i].split(",")[0]);
-    }
-    return Id;
-}
+import { generatedate, readCSV, splitID } from './HW10_data.js';
 
 function orderAt() {
     let date = generatedate();

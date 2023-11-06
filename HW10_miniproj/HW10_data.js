@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs';
+
 const cities = ['서울', '대전', '대구', '부산', '인천'];
 const gu_su = ['강남구', '동작구', '송파구'];
 const gu_dj = ['중구'];
@@ -43,4 +45,23 @@ export function generatedate(){
         : day = Math.floor(Math.random() * 27) + 1 ;
 
     return `${String(month).padStart(2, 0)}-${String(day).padStart(2,0)}`;
+}
+
+export function readCSV(csvName){
+    let CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
+        let fileName = csvName.substring(2);
+        if(err) {
+            console.log(`${fileName}_ID 읽기 실패`);
+        }
+    })
+    return CSVData;
+}
+
+export function splitID(CSVdata){
+    let Id = [];
+    let IdData = CSVdata.split("\n");
+    for(let i = 1; i < IdData.length; i++){
+    Id.push( IdData[i].split(",")[0]);
+    }
+    return Id;
 }
