@@ -1,22 +1,13 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import { generatedate, readCSV, splitID } from './HW10_data.js';
+import { generatedate, readCSV, splitID, getId } from './HW10_common.js';
 
 function orderAt() {
     let date = generatedate();
     let hour = Math.floor(Math.random() * 24);
     let min = Math.floor(Math.random() * 60);
     let sec = Math.floor(Math.random() * 60);
-
     return `2023-${date} ${String(hour).padStart(2, 0)}:${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`;
-}
-
-function storeId(storeIdList){
-    return storeIdList[ Math.floor(Math.random() * storeIdList.length)];
-}
-
-function userId(userIdList){
-    return userIdList[ Math.floor(Math.random() * userIdList.length)];
 }
 
 function orderData(){
@@ -25,8 +16,8 @@ function orderData(){
         order.push({
             'Id': uuid(),
             'OrderAt': orderAt(),
-            'StoreId': storeId(storeIdList),
-            "UserId": userId(userIdList)
+            'StoreId': getId(storeIdList),
+            "UserId": getId(userIdList)
         });
     }
     return order;

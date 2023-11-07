@@ -1,7 +1,8 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
+import {generateType} from './HW10_common.js'
 
-const type = ['Coffee', 'Juice', 'Cake'];
+const typeList = ['Coffee', 'Juice', 'Cake'];
 const item_coffee = ['Americano', 'Espresso', 'Latte'];
 const item_juice = ['Orange juice', 'Mango juice'];
 const item_cake = ['Strawberry cake', 'Chocolate cake'];
@@ -15,12 +16,7 @@ const price = {
     'Chocolate cake': 5500
 };
 
-function generateType(){
-    let type_num = Math.floor(Math.random()*type.length);
-    return type[type_num];
-}
-
-function generateName(type){
+function generateItemName(type){
     let item = '';
     switch(type){
         case 'Coffee':
@@ -39,13 +35,13 @@ function generateName(type){
 function itemData(){
     let item = [];
     for(let i = 0; i < 20; i++){
-        let type = generateType();
-        let Name = generateName(type);
+        let itemType = generateType(typeList);
+        let itemName = generateItemName(itemType);
         item.push({
             'Id': uuid(),
-            'Name': Name,
-            'Type': type,
-            "UnitPrice": price[Name]
+            'Name': itemName,
+            'Type': itemType,
+            "UnitPrice": price[itemName]
         });
     }
     return item;

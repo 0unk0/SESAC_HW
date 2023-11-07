@@ -1,22 +1,14 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import { readCSV, splitID } from './HW10_data.js';
-
-function orderId(orderIdList){
-    return orderIdList[ Math.floor(Math.random() * orderIdList.length)];
-}
-
-function itemId(itemIdList){
-    return itemIdList[ Math.floor(Math.random() * itemIdList.length)];
-}
+import { readCSV, splitID, getId } from './HW10_common.js';
 
 function orderitemData(){
     let orderitem = [];
     for(let i = 0; i < 50000; i++){
         orderitem.push({
             'Id': uuid(),
-            'OrderId': orderId(orderIdList),
-            "ItemId": itemId(itemIdList)
+            'OrderId': getId(orderIdList),
+            "ItemId": getId(itemIdList)
         });
     }
     return orderitem;

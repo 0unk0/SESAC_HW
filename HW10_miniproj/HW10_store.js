@@ -1,6 +1,6 @@
 import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import {generateAddress} from './HW10_data.js'
+import {generateAddress, generateType} from './HW10_common.js'
 
 const typeList = ['스타벅스', '투썸플레이스', '이디야', '커피빈'];
 const nameList = {
@@ -15,26 +15,22 @@ const nameList = {
     "부평구": "부평",
 }
 
-function generateName(addr){
+function generateStoreName(addr){
     let gu = addr.split(' ')[1];
     let name = nameList[gu];
     let num = Math.floor(Math.random()*10)+1;
     return ` ${name}${num}호점`;
 }
 
-function generateType(){
-    return typeList[Math.floor(Math.random()*typeList.length)];
-}
-
 function storeData(){
     let store = [];
 
     for(let i = 0; i < 100; i++){
-        let type = generateType();
+        let type = generateType(typeList);
         let addr = generateAddress();
         store.push(
             {Id: uuid(),
-            Name: type+generateName(addr),
+            Name: type+generateStoreName(addr),
             Type: type,
             Address: addr}
         );
