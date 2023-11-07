@@ -1,6 +1,5 @@
-import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import {generateType} from './HW10_common.js'
+import {generateType, writeCSV} from './HW10_common.js'
 
 const typeList = ['Coffee', 'Juice', 'Cake'];
 const item_coffee = ['Americano', 'Espresso', 'Latte'];
@@ -47,16 +46,8 @@ function itemData(){
     return item;
 }
 
-function itemCSV(item){
-    const itemData = item.map(item => `${item.Id},${item.Name},${item.Type},${item.UnitPrice}`).join('\n'); 
-    const header = 'Id,Name,Type,UnitPrice\n';
+const header = 'Id,Name,Type,UnitPrice\n';
+const item = itemData();
+const Data = item.map(item => `${item.Id},${item.Name},${item.Type},${item.UnitPrice}`).join('\n');
 
-    writeFile('item.csv', header+itemData, 'utf-8', (err,data) => {
-        if(err){
-            console.log('item.csv 작성 실패');
-        }
-    });
-}
-
-let itemList = itemData();
-itemCSV(itemList);
+writeCSV('item.csv', header, Data);

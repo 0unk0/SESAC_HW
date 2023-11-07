@@ -1,6 +1,5 @@
-import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import { generateAddress, generatedate } from './HW10_common.js';
+import { generateAddress, generatedate, writeCSV } from './HW10_common.js';
 
 const today = new Date();
 const surnameList = ['김', '이', '박','최', '정', '강', '조', '윤', '장', '임', '한', '오', '서', '신', '권'];
@@ -48,16 +47,8 @@ function userData(){
     return user;
 }
 
-function userCSV(user){
-    const userData = user.map(user => `${user.Id},${user.Name},${user.Gender},${user.Age},${user.Birthdate},${user.Address}`).join('\n'); 
-    const header = 'Id,Name,Gender,Age,Birthdate,Address\n';
+const header = 'Id,Name,Gender,Age,Birthdate,Address\n';
+const user = userData();
+const Data = user.map(user => `${user.Id},${user.Name},${user.Gender},${user.Age},${user.Birthdate},${user.Address}`).join('\n'); 
 
-    writeFile('user.csv', header+userData, 'utf-8', (err) => {
-        if(err){
-            console.log("user.csv 파일 작성 실패");
-        }
-    });
-}
-
-let userList = userData();
-userCSV(userList);
+writeCSV('user.csv', header, Data);

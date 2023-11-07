@@ -1,6 +1,5 @@
-import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import { generatedate, readCSV, splitID, getId } from './HW10_common.js';
+import { generatedate, readCSV, splitID, getId, writeCSV } from './HW10_common.js';
 
 function orderAt() {
     let date = generatedate();
@@ -11,6 +10,9 @@ function orderAt() {
 }
 
 function orderData(){
+    const storeIdList = splitID(readCSV('./store.csv'));
+    const userIdList = splitID(readCSV('./user.csv'));
+
     let order = [];
     for(let i = 0; i < 10000; i++){
         order.push({
@@ -23,18 +25,8 @@ function orderData(){
     return order;
 }
 
-function orderCSV(order){
-    const orderData = order.map(order => `${order.Id},${order.OrderAt},${order.StoreId},${order.UserId}`).join('\n'); 
-    const header = 'Id,OrderAt,StoreId,UserId\n';
+const header = 'Id,OrderAt,StoreId,UserId\n';
+const order = orderData();
+const Data = order.map(order => `${order.Id},${order.OrderAt},${order.StoreId},${order.UserId}`).join('\n'); 
 
-    writeFile('order.csv', header+orderData, 'utf-8', (err,data) => {
-        if(err){
-            console.log('order.csv 작성 실패');
-        }
-    });
-}
-
-const storeIdList = splitID(readCSV('./store.csv'));
-const userIdList = splitID(readCSV('./user.csv'));
-const orderList = orderData();
-orderCSV(orderList);
+writeCSV('order.csv', header, Data);

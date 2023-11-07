@@ -1,6 +1,5 @@
-import {writeFile} from 'node:fs';
 import {v4 as uuid} from 'uuid';
-import {generateAddress, generateType} from './HW10_common.js'
+import {generateAddress, generateType, writeCSV} from './HW10_common.js'
 
 const typeList = ['스타벅스', '투썸플레이스', '이디야', '커피빈'];
 const nameList = {
@@ -38,16 +37,8 @@ function storeData(){
     return store;
 }
 
-function storeCSV(store){
-    const storeData = store.map(store => `${store.Id},${store.Name},${store.Type},${store.Address}`).join('\n');
-    const header = 'Id,Name,Type,Address\n';
+const header = 'Id,Name,Type,Address\n';
+const store = storeData();
+const Data = store.map(store => `${store.Id},${store.Name},${store.Type},${store.Address}`).join('\n'); 
 
-    writeFile('store.csv', header+storeData, 'utf-8', (err) => {
-        if(err){
-            console.log("store.csv 파일 작성 실패");
-        }
-    })
-}
-
-const storeList = storeData();
-storeCSV(storeList);
+writeCSV('store.csv', header, Data);

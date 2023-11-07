@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readFileSync, writeFile} from 'node:fs';
 
 // 주소(user, store)
 const cities = ['서울', '대전', '대구', '부산', '인천'];
@@ -54,7 +54,7 @@ export function generateType(typeList){
     return typeList[Math.floor(Math.random()*typeList.length)];
 }
 
-// CSV -> ID(order, orderItem)
+// readCSV -> ID(order, orderItem)
 export function readCSV(csvName){
     let CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
         let fileName = csvName.substring(2);
@@ -76,5 +76,14 @@ export function splitID(CSVdata){
 
 export function getId(IdName){
     return IdName[ Math.floor(Math.random() * IdName.length)];
+}
+
+// writeCSV
+export function writeCSV(csvName, header, data){
+    writeFile(csvName, header+data, 'utf-8', (err) => {
+        if(err){
+            console.log(`${csvName} 파일 작성 실패`);
+        }
+    });
 }
 
