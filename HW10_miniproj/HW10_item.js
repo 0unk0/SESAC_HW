@@ -50,4 +50,4 @@ const header = 'Id,Name,Type,UnitPrice\n';
 const item = itemData();
 const Data = item.map(item => `${item.Id},${item.Name},${item.Type},${item.UnitPrice}`).join('\n');
 
-writeCSV('item.csv', header, Data);
+writeCSV('./csv/item.csv', header, Data);

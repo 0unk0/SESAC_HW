@@ -51,4 +51,4 @@ const header = 'Id,Name,Gender,Age,Birthdate,Address\n';
 const user = userData();
 const Data = user.map(user => `${user.Id},${user.Name},${user.Gender},${user.Age},${user.Birthdate},${user.Address}`).join('\n'); 
 
-writeCSV('user.csv', header, Data);
+writeCSV('./csv/user.csv', header, Data);

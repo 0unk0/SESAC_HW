@@ -41,4 +41,4 @@ const header = 'Id,Name,Type,Address\n';
 const store = storeData();
 const Data = store.map(store => `${store.Id},${store.Name},${store.Type},${store.Address}`).join('\n'); 
 
-writeCSV('store.csv', header, Data);
+writeCSV('./csv/store.csv', header, Data);
