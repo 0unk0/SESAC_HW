@@ -55,22 +55,18 @@ export function generateType(typeList){
 }
 
 // readCSV -> ID(order, orderItem)
-export function readCSV(csvName){
-    let CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
+export function readId(csvName){
+    const CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
         let fileName = csvName.substring(2);
         if(err) {
             console.log(`${fileName}_ID 읽기 실패`);
         }
     })
-    return CSVData;
-}
+    const IdData = CSVData.split("\n");
+    IdData.shift();
 
-export function splitID(CSVdata){
     let Id = [];
-    let IdData = CSVdata.split("\n");
-    for(let i = 1; i < IdData.length; i++){
-    Id.push( IdData[i].split(",")[0]);
-    }
+    Id = IdData.map(IdData => IdData.split(",")[0]);
     return Id;
 }
 
@@ -82,7 +78,7 @@ export function getId(IdName){
 export function writeCSV(csvName, header, data){
     writeFile(csvName, header+data, 'utf-8', (err) => {
         if(err){
-            console.log(`${csvName} 파일 작성 실패`);
+            console.log(`파일 작성 실패`);
         }
     });
 }

@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import { generatedate, readCSV, splitID, getId, writeCSV } from './HW10_common.js';
+import { generatedate, readId, getId, writeCSV } from './HW10_common.js';
 
 function orderAt() {
     let date = generatedate();
@@ -10,8 +10,8 @@ function orderAt() {
 }
 
 function orderData(){
-    const storeIdList = splitID(readCSV('./csv/store.csv'));
-    const userIdList = splitID(readCSV('./csv/user.csv'));
+    const storeIdList = readId('./csv/store.csv');
+    const userIdList = readId('./csv/user.csv');
 
     let order = [];
     for(let i = 0; i < 10000; i++){
