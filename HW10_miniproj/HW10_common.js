@@ -57,7 +57,7 @@ export function generateType(typeList){
 // readCSV -> ID(order, orderItem)
 export function readId(csvName){
     const CSVData = readFileSync(csvName, 'utf-8', (err, data) => {
-        let fileName = csvName.substring(2);
+        let fileName = csvName.substring(6);
         if(err) {
             console.log(`${fileName}_ID 읽기 실패`);
         }
@@ -77,8 +77,9 @@ export function getId(IdName){
 // writeCSV
 export function writeCSV(csvName, header, data){
     writeFile(csvName, header+data, 'utf-8', (err) => {
+        let fileName = csvName.substring(6);
         if(err){
-            console.log(`파일 작성 실패`);
+            console.log(`${fileName} 파일 작성 실패`);
         }
     });
 }
