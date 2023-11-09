@@ -37,7 +37,7 @@ export function generateAddress(){
 
 // 날짜(user, order)
 export function generatedate(){
-    let month = Math.floor(Math.random() * 11) + 1;
+    let month = Math.floor(Math.random() * 12) + 1;
     let day = 0;
     
     [1, 3, 5, 7, 8, 10, 12].includes(month)
