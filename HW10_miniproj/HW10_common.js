@@ -49,11 +49,6 @@ export function generatedate(){
     return `${String(month).padStart(2, 0)}-${String(day).padStart(2,0)}`;
 }
 
-// 타입(store, item)
-export function generateType(typeList){
-    return typeList[Math.floor(Math.random()*typeList.length)];
-}
-
 // readCSV -> ID(order, orderItem)
 export function readId(csvName){
     const CSVData = readFileSync(csvName, 'utf-8', (err, data) => {

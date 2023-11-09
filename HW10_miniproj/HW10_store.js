@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { generateAddress, generateType } from './HW10_common.js'
+import { generateAddress } from './HW10_common.js'
 
 const typeList = ['스타벅스', '투썸플레이스', '이디야', '커피빈'];
 const nameList = {
@@ -21,12 +21,16 @@ function generateStoreName(addr){
     return ` ${name}${num}호점`;
 }
 
+function generateType(typeList){
+    return typeList[Math.floor(Math.random()*typeList.length)];
+}
+
 export function storeData(count){
     let store = ['Id,Name,Type,Address'];
     for(let i = 0; i < count; i++){
-        const Type = generateType(typeList);
-        const Address = generateAddress();
         const Id = uuid();
+        const Address = generateAddress();
+        const Type = generateType(typeList);
         const Name = Type + generateStoreName(Address);
         store.push(`${Id},${Name},${Type},${Address}`);
     };
