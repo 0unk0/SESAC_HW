@@ -60,12 +60,11 @@ export function readId(csvName){
     const IdData = CSVData.split("\n");
     IdData.shift();
 
-    let Id = [];
-    Id = IdData.map(IdData => IdData.split(",")[0]);
+    const Id = IdData.map(IdData => IdData.split(",")[0]);
     return Id;
 }
 
 export function getId(IdName){
-    return IdName[ Math.floor(Math.random() * IdName.length)];
+    return IdName[Math.floor(Math.random() * IdName.length)];
 }
 
