@@ -1,14 +1,14 @@
-import {readFileSync, writeFile} from 'node:fs';
+import { readFileSync } from 'node:fs';
 
 // 주소(user, store)
-const cities = ['서울', '대전', '대구', '부산', '인천'];
-const gu_su = ['강남구', '동작구', '송파구'];
-const gu_dj = ['중구'];
-const gu_dg = ['달서구'];
-const gu_bs = ['수영구' , '해운대구'];
-const gu_ic = ['연수구', '부평구']
-
 export function generateAddress(){
+    const cities = ['서울', '대전', '대구', '부산', '인천'];
+    const gu_su = ['강남구', '동작구', '송파구'];
+    const gu_dj = ['중구'];
+    const gu_dg = ['달서구'];
+    const gu_bs = ['수영구' , '해운대구'];
+    const gu_ic = ['연수구', '부평구'];
+
     let city_num = Math.floor(Math.random() * cities.length);
     let gu="";
     let road = Math.random() < 0.5 ? "길" : "로";
@@ -72,15 +72,5 @@ export function readId(csvName){
 
 export function getId(IdName){
     return IdName[ Math.floor(Math.random() * IdName.length)];
-}
-
-// writeCSV
-export function writeCSV(csvName, header, data){
-    writeFile(csvName, header+data, 'utf-8', (err) => {
-        let fileName = csvName.substring(6);
-        if(err){
-            console.log(`${fileName} 파일 작성 실패`);
-        }
-    });
 }
 

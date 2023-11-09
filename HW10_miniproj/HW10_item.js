@@ -1,5 +1,5 @@
-import {v4 as uuid} from 'uuid';
-import {generateType, writeCSV} from './HW10_common.js'
+import { v4 as uuid } from 'uuid';
+import { generateType } from './HW10_common.js'
 
 const typeList = ['Coffee', 'Juice', 'Cake'];
 const item_coffee = ['Americano', 'Espresso', 'Latte'];
@@ -31,23 +31,14 @@ function generateItemName(type){
     return item;
 }
 
-function itemData(){
-    let item = [];
-    for(let i = 0; i < 20; i++){
-        let itemType = generateType(typeList);
-        let itemName = generateItemName(itemType);
-        item.push({
-            'Id': uuid(),
-            'Name': itemName,
-            'Type': itemType,
-            "UnitPrice": price[itemName]
-        });
+export function itemData(count){
+    let item = ['Id,Name,Type,UnitPrice'];
+    for(let i = 0; i < count; i++){
+        const Type = generateType(typeList);
+        const Name = generateItemName(Type);
+        const Id = uuid();
+        const UnitPrice = price[Name];
+        item.push(`${Id},${Name},${Type},${UnitPrice}`);
     }
-    return item;
+    return item.join('\n');
 }
-
-const header = 'Id,Name,Type,UnitPrice\n';
-const item = itemData();
-const Data = item.map(item => `${item.Id},${item.Name},${item.Type},${item.UnitPrice}`).join('\n');
-
-writeCSV('./csv/item.csv', header, Data);

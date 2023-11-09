@@ -1,5 +1,5 @@
-import {v4 as uuid} from 'uuid';
-import {generateAddress, generateType, writeCSV} from './HW10_common.js'
+import { v4 as uuid } from 'uuid';
+import { generateAddress, generateType } from './HW10_common.js'
 
 const typeList = ['스타벅스', '투썸플레이스', '이디야', '커피빈'];
 const nameList = {
@@ -21,24 +21,14 @@ function generateStoreName(addr){
     return ` ${name}${num}호점`;
 }
 
-function storeData(){
-    let store = [];
-
-    for(let i = 0; i < 100; i++){
-        let type = generateType(typeList);
-        let addr = generateAddress();
-        store.push(
-            {Id: uuid(),
-            Name: type+generateStoreName(addr),
-            Type: type,
-            Address: addr}
-        );
+export function storeData(count){
+    let store = ['Id,Name,Type,Address'];
+    for(let i = 0; i < count; i++){
+        const Type = generateType(typeList);
+        const Address = generateAddress();
+        const Id = uuid();
+        const Name = Type + generateStoreName(Address);
+        store.push(`${Id},${Name},${Type},${Address}`);
     };
-    return store;
+    return store.join('\n');
 }
-
-const header = 'Id,Name,Type,Address\n';
-const store = storeData();
-const Data = store.map(store => `${store.Id},${store.Name},${store.Type},${store.Address}`).join('\n'); 
-
-writeCSV('./csv/store.csv', header, Data);

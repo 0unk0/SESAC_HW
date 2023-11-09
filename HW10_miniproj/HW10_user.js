@@ -1,5 +1,5 @@
-import {v4 as uuid} from 'uuid';
-import { generateAddress, generatedate, writeCSV } from './HW10_common.js';
+import { v4 as uuid } from 'uuid';
+import { generateAddress, generatedate } from './HW10_common.js';
 
 const today = new Date();
 const surnameList = ['김', '이', '박','최', '정', '강', '조', '윤', '장', '임', '한', '오', '서', '신', '권'];
@@ -29,26 +29,17 @@ function generateUserGender(){
     return`${Math.random() < 0.5 ? "Male" : "Female"}`;
 }
 
-function userData(){
-    let user = [];
+export function userData(count){
+    let user = ['Id,Name,Gender,Age,Birthdate,Address'];
+    for(let i = 0; i < count; i++){
+        const Gender = generateUserGender();
+        const Age = generateUserAge();
+        const Id = uuid();
+        const Name = generateUserName(Gender);
+        const Birthdate = generateUserBirthdate(Age);
+        const Address = generateAddress();
 
-    for(let i = 0; i < 1000; i++){
-        let gender = generateUserGender();
-        let age = generateUserAge();
-        user.push(
-            {Id : uuid(), 
-            Name: generateUserName(gender),
-            Gender: gender,
-            Age: age,
-            Birthdate: generateUserBirthdate(age),
-            Address: generateAddress()}
-        );
+        user.push(`${Id},${Name},${Gender},${Age},${Birthdate},${Address}`);
     }
-    return user;
+    return user.join('\n');
 }
-
-const header = 'Id,Name,Gender,Age,Birthdate,Address\n';
-const user = userData();
-const Data = user.map(user => `${user.Id},${user.Name},${user.Gender},${user.Age},${user.Birthdate},${user.Address}`).join('\n'); 
-
-writeCSV('./csv/user.csv', header, Data);

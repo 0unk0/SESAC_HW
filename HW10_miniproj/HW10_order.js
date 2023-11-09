@@ -1,5 +1,5 @@
-import {v4 as uuid} from 'uuid';
-import { generatedate, readId, getId, writeCSV } from './HW10_common.js';
+import { v4 as uuid } from 'uuid';
+import { generatedate, readId, getId } from './HW10_common.js';
 
 function orderAt() {
     let date = generatedate();
@@ -9,24 +9,17 @@ function orderAt() {
     return `2023-${date} ${String(hour).padStart(2, 0)}:${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`;
 }
 
-function orderData(){
+export function orderData(count){
     const storeIdList = readId('./csv/store.csv');
     const userIdList = readId('./csv/user.csv');
-
-    let order = [];
-    for(let i = 0; i < 10000; i++){
-        order.push({
-            'Id': uuid(),
-            'OrderAt': orderAt(),
-            'StoreId': getId(storeIdList),
-            "UserId": getId(userIdList)
-        });
+    
+    let order = ['Id,OrderAt,StoreId,UserId'];
+    for(let i = 0; i < count; i++){
+        const Id = uuid();
+        const OrderAt = orderAt();
+        const StoreId = getId(storeIdList);
+        const UserId = getId(userIdList);
+        order.push(`${Id},${OrderAt},${StoreId},${UserId}`);
     }
-    return order;
+    return order.join('\n');
 }
-
-const header = 'Id,OrderAt,StoreId,UserId\n';
-const order = orderData();
-const Data = order.map(order => `${order.Id},${order.OrderAt},${order.StoreId},${order.UserId}`).join('\n'); 
-
-writeCSV('./csv/order.csv', header, Data);
