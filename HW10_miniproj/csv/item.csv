@@ -1,21 +1,21 @@
 Id,Name,Type,UnitPrice
-b6f2ffbd-4c65-4f1b-80f6-e1b99ede3e91,Espresso,Coffee,2500
-14e020e1-f752-49fc-befb-f673a560ab7d,Latte,Coffee,3500
-e6851f4b-0179-433b-ba41-5243bf0a2efc,Latte,Coffee,3500
-ea71d6df-d4a6-4e1c-9f58-899eec9d0ddf,Americano,Coffee,3000
-e1717376-38c0-49a5-b450-fad08656557b,Mango juice,Juice,4500
-2a28ddb8-7d06-4fdb-b190-e8792a954dc5,Orange juice,Juice,4500
-0757caf4-f072-4aa0-92b4-361ece87c2f3,Mango juice,Juice,4500
-d51ce461-0fbf-44e7-8bad-6875fed127ff,Orange juice,Juice,4500
-4c8a90ff-7d6e-47b9-8502-536f10fdcbad,Orange juice,Juice,4500
-8709e2ce-cd39-4d52-a444-018a396ca1d3,Espresso,Coffee,2500
-fb1a0261-93cf-4d07-9886-0592d65233f4,Orange juice,Cake,5500
-2d69a576-f09e-4c7a-8ce6-cd97f478bf2a,Orange juice,Juice,4500
-3ed7ab08-79f7-4f5f-8464-cc307e808ab4,Orange juice,Juice,4500
-9ef3fa67-a6b3-4263-bbd3-a5ba8bfdaeb4,Espresso,Coffee,2500
-da939d62-3ac7-40a2-b180-5ffe39fe3699,Orange juice,Cake,5500
-37ad8c73-96fe-4a7a-b554-cd1a0fc73e84,Orange juice,Juice,4500
-e93cf923-806c-4067-be34-9014a7aee056,Strawberry cake,Cake,6000
-9baad692-e9d2-4a6e-9922-70423a349548,Mango juice,Juice,4500
-497edf71-ce00-4065-b7cb-78740bb1d1ff,Latte,Coffee,3500
-dedda6e8-5f8a-424d-820e-203ff88553fd,Orange juice,Cake,5500
+ef20828c-6d23-4d6b-b6ba-25cdf5ee5637,Orange juice,Juice,4500
+969afe5d-baa8-45e7-b00e-ac015a2097b1,Americano,Coffee,3000
+42bb6629-de65-4244-9beb-90a227075725,Strawberry cake,Cake,6000
+368b478b-1599-47c8-989a-de0f85a861dd,Espresso,Coffee,2500
+000f99a7-3b2d-4b05-89d6-1a5e452e89c4,Espresso,Coffee,2500
+c147a77b-4d56-4f9e-8139-9e3b206783a0,Americano,Coffee,3000
+ec1f9f2f-b11f-4c29-9ae7-78376a190ef7,Strawberry cake,Cake,6000
+0d6c029b-0b5b-4bb8-9fe1-9f0c2247768a,Orange juice,Cake,5500
+8907e439-cd3c-4e57-8b26-ba5070886d50,Strawberry cake,Cake,6000
+639cf0c1-460b-43d3-b133-069c00b53366,Mango juice,Juice,4500
+75aea1a2-7e9f-42f0-8955-718a8d7bb92c,Mango juice,Juice,4500
+dba959ba-a810-4607-b5a6-cb27c81201c5,Americano,Coffee,3000
+04ef6b96-d809-4f27-b509-f41c790e1b0b,Espresso,Coffee,2500
+8a99a1fd-6f8e-421c-be36-0b799de7c7ab,Latte,Coffee,3500
+c05e5bb9-7e55-4eac-9dfe-30653459487e,Strawberry cake,Cake,6000
+0dc7f5b7-544c-4a8e-b04e-cd56bd1473c8,Strawberry cake,Cake,6000
+c5dea44d-8f03-4b12-b888-e8a8e4ff79b4,Americano,Coffee,3000
+4a577830-8a1d-4d1e-9d71-7bcb65919e1c,Espresso,Coffee,2500
+44d02a11-babb-40d5-b7ba-f53b6837f341,Espresso,Coffee,2500
+07a2eee8-5692-4bd0-ae67-b0498973fb52,Orange juice,Cake,5500

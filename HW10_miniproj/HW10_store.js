@@ -14,25 +14,32 @@ const nameList = {
     "부평구": "부평",
 }
 
-function generateStoreName(addr){
-    let gu = addr.split(' ')[1];
-    let name = nameList[gu];
-    let num = Math.floor(Math.random()*10)+1;
-    return ` ${name}${num}호점`;
+export class Store{
+    getStoreTypeCSV(){
+        return `${this.Id},${this.Address},${this.Type},${this.Name}`;
+    }
+    setStore(){
+        this.Id = this.generateStoreId();
+        this.Address = this.generateStoreAddress();
+        this.Type = this.generateType(typeList);
+        this.Name = this.Type + this.generateStoreName(this.Address);
+    }
+
+    generateStoreId(){
+        return uuid();
+    }
+    generateStoreAddress(){
+        return generateAddress();
+    }
+    generateType(typeList){
+        return typeList[Math.floor(Math.random()*typeList.length)];
+    }
+    generateStoreName(addr){
+        let gu = addr.split(' ')[1];
+        let name = nameList[gu];
+        let num = Math.floor(Math.random()*10)+1;
+
+        return ` ${name}${num}호점`;
+    }
 }
 
-function generateType(typeList){
-    return typeList[Math.floor(Math.random()*typeList.length)];
-}
-
-export function storeData(count){
-    let store = ['Id,Name,Type,Address'];
-    for(let i = 0; i < count; i++){
-        const Id = uuid();
-        const Address = generateAddress();
-        const Type = generateType(typeList);
-        const Name = Type + generateStoreName(Address);
-        store.push(`${Id},${Name},${Type},${Address}`);
-    };
-    return store.join('\n');
-}

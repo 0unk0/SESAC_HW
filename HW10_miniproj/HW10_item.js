@@ -37,21 +37,23 @@ const menu = [{
     },
 ]
 
-function generateItem(){
-    const num = Math.floor(Math.random()*menu.length);
-    return menu[num];
-}
-
-export function itemData(count){
-    let item = ['Id,Name,Type,UnitPrice'];
-
-    for(let i = 0; i < count; i++){
-        const Id = uuid();
-        const Item = generateItem();
-        const Name = Item.Name;
-        const Type = Item.Type;
-        const UnitPrice = Item.Price;
-        item.push(`${Id},${Name},${Type},${UnitPrice}`);
+export class Item{
+    getItemTypeCSV(){
+        return `${this.Id},${this.Name},${this.Type},${this.UnitPrice}`;
     }
-    return item.join('\n');
+    setItem(){
+        this.Id = this.generateItemId();
+        this.Item = this.chooseItem();
+        this.Name = this.Item.Name;
+        this.Type = this.Item.Type;
+        this.UnitPrice = this.Item.Price;
+    }
+
+    generateItemId(){
+        return uuid();
+    }
+    chooseItem(){
+        const menuNum = Math.floor(Math.random()*menu.length);
+        return menu[menuNum];
+    }
 }
