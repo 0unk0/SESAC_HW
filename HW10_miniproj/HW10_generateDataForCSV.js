@@ -3,8 +3,9 @@ import { Store } from "./HW10_store.js";
 import { Order } from "./HW10_order.js";
 import { Item } from "./HW10_item.js";
 import { OrderItem } from "./HW10_orderItem.js";
+import { writeCSV } from "./HW10_common.js";
 
-export function generateUsers(numOfUsers){
+function generateUsers(numOfUsers){
     const usersListTypeCSV = ['Id,Name,Gender,Age,Birthdate,Address'];
 
     for(let i = 0; i < numOfUsers; i++){
@@ -13,10 +14,10 @@ export function generateUsers(numOfUsers){
         usersListTypeCSV.push(user.getUserTypeCSV());
     }
     
-    return  usersListTypeCSV.join('\n');
+    writeCSV('user.csv', usersListTypeCSV.join('\n'));
 }
 
-export function generateStores(numOfStores){
+function generateStores(numOfStores){
     const storesListTypeCSV = ['Id,Name,Type,Address'];
 
     for(let i = 0; i < numOfStores; i++){
@@ -25,10 +26,10 @@ export function generateStores(numOfStores){
         storesListTypeCSV.push(store.getStoreTypeCSV());
     }
 
-    return storesListTypeCSV.join('\n');
+    writeCSV('store.csv', storesListTypeCSV.join('\n'));
 }
 
-export function generateOrders(numOfOrders){    
+function generateOrders(numOfOrders){    
     const ordersListTypeCSV = ['Id,OrderAt,StoreId,UserId'];
     const order = new Order();
     for(let i = 0; i < numOfOrders; i++){
@@ -37,10 +38,10 @@ export function generateOrders(numOfOrders){
         ordersListTypeCSV.push(order.getOrderTypeCSV());
     }
 
-    return ordersListTypeCSV.join('\n');
+    writeCSV('order.csv', ordersListTypeCSV.join('\n'));
 }
 
-export function generateItems(numOfItems){
+function generateItems(numOfItems){
     const itemsListTypeCSV = ['Id,Name,Type,UnitPrice'];
 
     for(let i = 0; i < numOfItems; i++){
@@ -49,10 +50,10 @@ export function generateItems(numOfItems){
         itemsListTypeCSV.push(item.getItemTypeCSV());
     }
 
-    return itemsListTypeCSV.join('\n');
+    writeCSV('item.csv', itemsListTypeCSV.join('\n'));
 }
 
-export function generateOrderItems(numOfOrderItems){
+function generateOrderItems(numOfOrderItems){
     const orderitemsList = ['Id,OrderId,ItemId'];
     const orderItem = new OrderItem();
     for(let i = 0; i < numOfOrderItems; i++){
@@ -61,5 +62,19 @@ export function generateOrderItems(numOfOrderItems){
         orderitemsList.push(orderItem.getOrderItemTypeCSV());
     }
 
-    return orderitemsList.join('\n');
+    writeCSV('orderitem.csv', orderitemsList.join('\n'));
 }
+
+function generateData(){
+    generateUsers(1000);
+    generateStores(100);
+    setTimeout(() => {
+        generateOrders(10000);
+    }, 1000);
+    generateItems(20);
+    setTimeout(() => {
+        generateOrderItems(50000);
+    }, 3000);
+}
+
+generateData();
