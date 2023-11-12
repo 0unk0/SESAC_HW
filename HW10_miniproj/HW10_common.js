@@ -1,4 +1,4 @@
-import { readFileSync, writeFile } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 // 주소(user, store)
 export function generateAddress(){
@@ -69,7 +69,7 @@ export function getId(IdName){
 }
 
 export function writeCSV(csvName, data){
-    writeFile('./csv/'+csvName, data, 'utf-8', (err) => {
+    writeFileSync('./csv/'+csvName, data, 'utf-8', (err) => {
         if(err){
             console.log(`${csvName} 파일 작성 실패`);
         }

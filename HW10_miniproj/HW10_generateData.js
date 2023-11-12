@@ -7,9 +7,10 @@ import { writeCSV } from "./HW10_common.js";
 
 function generateUsers(numOfUsers){
     const usersListTypeCSV = ['Id,Name,Gender,Age,Birthdate,Address'];
+    const user = new User();
 
     for(let i = 0; i < numOfUsers; i++){
-        const user = new User();
+
         user.setUser();
         usersListTypeCSV.push(user.getUserTypeCSV());
     }
@@ -19,9 +20,9 @@ function generateUsers(numOfUsers){
 
 function generateStores(numOfStores){
     const storesListTypeCSV = ['Id,Name,Type,Address'];
+    const store = new Store();
 
     for(let i = 0; i < numOfStores; i++){
-        const store = new Store();
         store.setStore();
         storesListTypeCSV.push(store.getStoreTypeCSV());
     }
@@ -32,8 +33,8 @@ function generateStores(numOfStores){
 function generateOrders(numOfOrders){    
     const ordersListTypeCSV = ['Id,OrderAt,StoreId,UserId'];
     const order = new Order();
-    for(let i = 0; i < numOfOrders; i++){
 
+    for(let i = 0; i < numOfOrders; i++){
         order.setOrder();
         ordersListTypeCSV.push(order.getOrderTypeCSV());
     }
@@ -43,9 +44,9 @@ function generateOrders(numOfOrders){
 
 function generateItems(numOfItems){
     const itemsListTypeCSV = ['Id,Name,Type,UnitPrice'];
+    const item = new Item();
 
     for(let i = 0; i < numOfItems; i++){
-        const item = new Item();
         item.setItem();
         itemsListTypeCSV.push(item.getItemTypeCSV());
     }
@@ -56,8 +57,8 @@ function generateItems(numOfItems){
 function generateOrderItems(numOfOrderItems){
     const orderitemsList = ['Id,OrderId,ItemId'];
     const orderItem = new OrderItem();
-    for(let i = 0; i < numOfOrderItems; i++){
 
+    for(let i = 0; i < numOfOrderItems; i++){
         orderItem.setOrderItem();
         orderitemsList.push(orderItem.getOrderItemTypeCSV());
     }
@@ -68,13 +69,9 @@ function generateOrderItems(numOfOrderItems){
 function generateData(){
     generateUsers(1000);
     generateStores(100);
-    setTimeout(() => {
-        generateOrders(10000);
-    }, 1000);
+    generateOrders(10000);
     generateItems(20);
-    setTimeout(() => {
-        generateOrderItems(50000);
-    }, 3000);
+    generateOrderItems(50000);
 }
 
 generateData();
