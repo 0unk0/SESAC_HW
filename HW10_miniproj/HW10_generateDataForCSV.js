@@ -4,7 +4,7 @@ import { Order } from "./HW10_order.js";
 import { Item } from "./HW10_item.js";
 import { OrderItem } from "./HW10_orderItem.js";
 
-export function generateUsersData(numOfUsers){
+export function generateUsers(numOfUsers){
     const usersListTypeCSV = ['Id,Name,Gender,Age,Birthdate,Address'];
 
     for(let i = 0; i < numOfUsers; i++){
@@ -12,11 +12,11 @@ export function generateUsersData(numOfUsers){
         user.setUser();
         usersListTypeCSV.push(user.getUserTypeCSV());
     }
-
-    return usersListTypeCSV.join('\n');
+    
+    return  usersListTypeCSV.join('\n');
 }
 
-export function generateStoresData(numOfStores){
+export function generateStores(numOfStores){
     const storesListTypeCSV = ['Id,Name,Type,Address'];
 
     for(let i = 0; i < numOfStores; i++){
@@ -28,11 +28,11 @@ export function generateStoresData(numOfStores){
     return storesListTypeCSV.join('\n');
 }
 
-export function generateOrdersData(numOfOrders){    
+export function generateOrders(numOfOrders){    
     const ordersListTypeCSV = ['Id,OrderAt,StoreId,UserId'];
-
+    const order = new Order();
     for(let i = 0; i < numOfOrders; i++){
-        const order = new Order();
+
         order.setOrder();
         ordersListTypeCSV.push(order.getOrderTypeCSV());
     }
@@ -40,7 +40,7 @@ export function generateOrdersData(numOfOrders){
     return ordersListTypeCSV.join('\n');
 }
 
-export function generateItemsData(numOfItems){
+export function generateItems(numOfItems){
     const itemsListTypeCSV = ['Id,Name,Type,UnitPrice'];
 
     for(let i = 0; i < numOfItems; i++){
@@ -52,11 +52,11 @@ export function generateItemsData(numOfItems){
     return itemsListTypeCSV.join('\n');
 }
 
-export function generateOrderItemsData(numOfOrderItems){
+export function generateOrderItems(numOfOrderItems){
     const orderitemsList = ['Id,OrderId,ItemId'];
-
+    const orderItem = new OrderItem();
     for(let i = 0; i < numOfOrderItems; i++){
-        const orderItem = new OrderItem();
+
         orderItem.setOrderItem();
         orderitemsList.push(orderItem.getOrderItemTypeCSV());
     }

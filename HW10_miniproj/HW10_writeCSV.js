@@ -1,5 +1,5 @@
 import { writeFile } from 'node:fs';
-import { generateUsersData, generateStoresData, generateOrdersData, generateItemsData, generateOrderItemsData } from "./HW10_generateDataForCSV.js";
+import { generateUsers, generateStores, generateOrders, generateItems, generateOrderItems } from "./HW10_generateDataForCSV.js";
 
 function writeCSV(csvName, data){
     writeFile('./csv/'+csvName, data, 'utf-8', (err) => {
@@ -9,13 +9,13 @@ function writeCSV(csvName, data){
     });
 }
 
-writeCSV('user.csv',generateUsersData(1000));
-writeCSV('store.csv',generateStoresData(100));
+writeCSV('user.csv',generateUsers(1000));
+writeCSV('store.csv',generateStores(100));
 setTimeout(() => {
-    writeCSV('order.csv',generateOrdersData(10000));
+    writeCSV('order.csv',generateOrders(10000));
 }, 1000);
-writeCSV('item.csv',generateItemsData(20));
+writeCSV('item.csv',generateItems(20));
 setTimeout(() => {
-    writeCSV('orderitem.csv',generateOrderItemsData(50000));   
-}, 3000);
+    writeCSV('orderitem.csv',generateOrderItems(50000));   
+},3000);
 

@@ -1,18 +1,18 @@
 import { v4 as uuid } from 'uuid';
 import { generatedate, readId, getId } from './HW10_common.js';
 
-const storeIdList = readId('./csv/store.csv');
-const userIdList = readId('./csv/user.csv');
-
 export class Order{
+    storeIdList = readId('./csv/store.csv');
+    userIdList = readId('./csv/user.csv');
+
     getOrderTypeCSV(){
         return `${this.Id},${this.OrderAt},${this.StoreId},${this.UserId}`;
     }
     setOrder(){
         this.Id = this.generateOrderId();
         this.OrderAt = this.generateOrderAt();
-        this.StoreId = this.readStoreId(storeIdList);
-        this.UserId = this.readUserId(userIdList);
+        this.StoreId = this.readStoreId(this.storeIdList);
+        this.UserId = this.readUserId(this.userIdList);
     }
 
     generateOrderId(){
