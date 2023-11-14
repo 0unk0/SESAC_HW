@@ -1,3 +1,4 @@
+const { subtle } = require("crypto");
 const http = require("http");
 const fs = require("fs").promises;
 
@@ -18,25 +19,36 @@ const server = http.createServer(async (req, res) => {
                 const data = await fs.readFile("./Quokka.html");
                 res.writeHead(SUCCESS, {"Content-Type": "text/html; charset=utf-8"});
                 res.end(data);  
-            } else if(req.url.startsWith('/images/')){
+            } else if (req.url.startsWith("/images/")){ // <--------------- 숙제 1
                 const filePath = "." + req.url;
                 const data = await fs.readFile(filePath);
-                res.writeHead(SUCCESS, {"Content-Type": "image/jpg"});
+                res.writeHead(SUCCESS, {"Content-Type": "image/jpeg"});
                 res.end(data);  
-            } 
-            else if(req.url.startsWith('/css/')){
-                const filePath = "." + req.url;
+            } else if (req.url.startsWith("/static/")){ // <--------------- 숙제 2
+                const fileName = req.url.split(/\/static\//g)[1]; 
+                const ext = fileName.split(/\./g)[1]; 
+                const filePath = "./static/" + fileName;
+                let type = "";
+                let subType = "";
+                if (ext === "jpeg" || ext === "jpg" || ext === "png") {
+                    type = "image";
+                    if (ext === "jpg") {
+                        subType = "jpeg";
+                    } else {
+                        subType = ext;
+                    }                    
+                } else if (ext === "css" || ext === "js") {
+                    type = "text";
+                    if (ext === "js"){
+                        subType = "javascript";
+                    } else {
+                        subType = ext;
+                    }
+                }
                 const data = await fs.readFile(filePath);
-                res.writeHead(SUCCESS, {"Content-Type": "text/css"});
-                res.end(data);
-            } 
-            else if(req.url.startsWith('/js/')){
-                const filePath = "." + req.url;
-                const data = await fs.readFile(filePath);
-                res.writeHead(SUCCESS, {"Content-Type": "text/js"});
-                res.end(data);
-            } 
-            else{
+                res.writeHead(SUCCESS, {"Content-Type": `${type}/${subType}`});
+                res.end(data); 
+            } else{
                 res.writeHead(NOT_FOUND, {"Content-Type": "text/plain; charset=utf-8"});
                 res.end("Not Found");
             }
