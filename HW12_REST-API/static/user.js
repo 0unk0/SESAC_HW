@@ -86,15 +86,17 @@ function displayUsers(users) {
 
 async function modifyFunc(key) {
   const name = prompt("수정할 이름을 입력하세요.");
-  const response = await fetch(`/user/${key}`, {
-    method: "PUT",
-    header: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name }),
-  });
-  if (response.ok) {
-    await updateTable();
-  } else {
-    console.log("수정에 실패했습니다.");
+  if (name) {
+    const response = await fetch(`/user/${key}`, {
+      method: "PUT",
+      header: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    if (response.ok) {
+      await updateTable();
+    } else {
+      console.log("수정에 실패했습니다.");
+    }
   }
 }
 
