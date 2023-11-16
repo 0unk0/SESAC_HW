@@ -37,38 +37,15 @@ const server = http.createServer(async (req, res) => {
     } else if (req.method === "POST") {
       // <--- 숙제 4, 5 해결하면 POST, PUT, DELETE 코드 리팩토링 필요!!!
       if (req.url === "/user") {
-        let body = "";
-        req.on("data", (data) => {
-          body += data;
-        });
-        req.on("end", () => {
-          console.log("요청온 내용은??", body);
-          const formData = JSON.parse(body); // JSON -> 객체
-          const Name = formData.name;
-          const ID = Date.now();
-          users[ID] = Name;
-          console.log(users);
-        });
-        res.writeHead(201, { "Content-Type": "text/plain; charset=utf-8" });
-        res.end("등록 성공");
+        const ID = Date.now();
+        setName(ID, req, res);
       } else {
         sendStatusResponse(NOT_FOUND, res);
       }
     } else if (req.method === "PUT") {
       if (req.url.startsWith("/user/")) {
-        const key = req.url.split("/")[2];
-        let body = "";
-        req.on("data", (data) => {
-          body += data;
-        });
-        req.on("end", () => {
-          console.log("PUT Body: ", body);
-          const formData = JSON.parse(body);
-          users[key] = formData.name;
-          console.log(users);
-        });
-        res.writeHead(201, { "Content-Type": "text/plain; charset=utf-8" });
-        res.end("수정 성공");
+        const ID = req.url.split("/")[2];
+        setName(ID, req, res);
       } else {
         sendStatusResponse(NOT_FOUND, res);
       }
@@ -129,4 +106,18 @@ async function sendReadFileResponse(filePath, res) {
   const contentType = getContentType(filePath);
   res.writeHead(SUCCESS, { ContentType: contentType });
   res.end(data);
+}
+
+function setName(id, req, res) {
+  let body = "";
+  req.on("data", (data) => {
+    body += data;
+  });
+  req.on("end", () => {
+    const formData = JSON.parse(body);
+    users[id] = formData.name;
+    console.log(users);
+  });
+  res.writeHead(201, { "Content-Type": "text/plain; charset=utf-8" });
+  res.end("수정 성공");
 }
