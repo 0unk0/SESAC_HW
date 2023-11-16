@@ -55,8 +55,6 @@ const server = http.createServer(async (req, res) => {
         sendStatusResponse(NOT_FOUND, res);
       }
     } else if (req.method === "PUT") {
-      // <--- 숙제 4, 5 해결하면 POST, PUT, DELETE 코드 리팩토링 필요!!!
-      // 요청을 수정할 때
       if (req.url.startsWith("/user/")) {
         const key = req.url.split("/")[2];
         let body = "";
@@ -65,7 +63,7 @@ const server = http.createServer(async (req, res) => {
         });
         req.on("end", () => {
           console.log("PUT Body: ", body);
-          const formData = parse(body);
+          const formData = JSON.parse(body);
           users[key] = formData.name;
           console.log(users);
         });
@@ -75,8 +73,6 @@ const server = http.createServer(async (req, res) => {
         sendStatusResponse(NOT_FOUND, res);
       }
     } else if (req.method === "DELETE") {
-      // <--- 숙제 4, 5 해결하면 POST, PUT, DELETE 코드 리팩토링 필요!!!
-      // 요청을 삭제할 때
       if (req.url.startsWith("/user")) {
         const key = req.url.split("/")[2];
         delete users[key];

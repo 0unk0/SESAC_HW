@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form");
   const username = document.getElementById("username");
 
-  console.log(form, username);
+  // 최초 로딩시 백엔드에 사용자 데이터 요청
+  // updateTable();
 
   form.addEventListener("submit", async (ev) => {
     // form의 원래 기능(다른 페이지로 요청) 막기
@@ -72,9 +73,9 @@ function displayUsers(users) {
       removeButton.innerHTML = "삭제";
       row.appendChild(removeButton);
 
-      // modifyButton.addEventListener("click", () => {
-      //   modifyFunc(users[key]);
-      // });
+      modifyButton.addEventListener("click", () => {
+        modifyFunc(key);
+      });
 
       removeButton.addEventListener("click", () => {
         removeFunc(key);
@@ -83,10 +84,19 @@ function displayUsers(users) {
   }
 }
 
-// function modifyFunc(name) {
-//   const rename = prompt("수정할 이름을 입력하세요.");
-//   alert(rename);
-// }
+async function modifyFunc(key) {
+  const name = prompt("수정할 이름을 입력하세요.");
+  const response = await fetch(`/user/${key}`, {
+    method: "PUT",
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name }),
+  });
+  if (response.ok) {
+    await updateTable();
+  } else {
+    console.log("수정에 실패했습니다.");
+  }
+}
 
 async function removeFunc(key) {
   const result = confirm("정말로 삭제하시겠습니까?");
@@ -95,7 +105,7 @@ async function removeFunc(key) {
       method: "DELETE",
     });
     if (response.ok) {
-      updateTable();
+      await updateTable();
     } else {
       console.log("삭제에 실패했습니다.");
     }
