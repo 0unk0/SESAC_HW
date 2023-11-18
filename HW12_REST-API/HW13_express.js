@@ -18,10 +18,10 @@ app.use("/static", express.static("static"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "static", "index.html"));
 });
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "about.html"));
+  res.sendFile(path.join(__dirname, "static", "about.html"));
 });
 
 app.get("/user", (req, res) => {

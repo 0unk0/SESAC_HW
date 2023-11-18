@@ -15,9 +15,9 @@ const server = http.createServer(async (req, res) => {
   try {
     if (req.method === "GET") {
       if (req.url === "/") {
-        await sendReadFileResponse("./index.html", res);
+        await sendReadFileResponse("./static/index.html", res);
       } else if (req.url == "/about/") {
-        await sendReadFileResponse("./about.html", res);
+        await sendReadFileResponse("./static/about.html", res);
       } else if (req.url == "/user") {
         res.writeHead(SUCCESS, { "Content-Type": "text/plain; charset=utf-8" });
         res.end(JSON.stringify(users));
