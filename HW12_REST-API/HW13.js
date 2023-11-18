@@ -8,7 +8,6 @@ const SERVER_ERROR = 500;
 const users = {};
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -16,10 +15,14 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname, "about.html"));
 });
-app.get("/images/:fileName", (req, res) => {
+app.get("/about/images/:fileName", (req, res) => {
+  console.log(req.url);
   res.sendFile(path.join(__dirname, "images", req.params.fileName));
 });
-app.get("/images/:fileName", (req, res) => {
+app.get("/about/static/:fileName", (req, res) => {
+  res.sendFile(path.join(__dirname, "static", req.params.fileName));
+});
+app.get("/static/:fileName", (req, res) => {
   res.sendFile(path.join(__dirname, "static", req.params.fileName));
 });
 
