@@ -9,21 +9,15 @@ const users = {};
 
 app.use(express.json());
 
+app.use("/static", express.static("static"));
+app.use("/about/images", express.static(path.join(__dirname, "images")));
+app.use("/about/static", express.static(path.join(__dirname, "static")));
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 app.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname, "about.html"));
-});
-app.get("/about/images/:fileName", (req, res) => {
-  console.log(req.url);
-  res.sendFile(path.join(__dirname, "images", req.params.fileName));
-});
-app.get("/about/static/:fileName", (req, res) => {
-  res.sendFile(path.join(__dirname, "static", req.params.fileName));
-});
-app.get("/static/:fileName", (req, res) => {
-  res.sendFile(path.join(__dirname, "static", req.params.fileName));
 });
 
 app.get("/user", (req, res) => {
