@@ -9,9 +9,13 @@ const users = {};
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(req.url);
+  next();
+});
+
 app.use("/static", express.static("static"));
-app.use("/about/images", express.static(path.join(__dirname, "images")));
-app.use("/about/static", express.static(path.join(__dirname, "static")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
