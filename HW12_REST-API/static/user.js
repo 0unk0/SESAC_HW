@@ -49,7 +49,7 @@ async function modifyUser(key) {
   if (newname) {
     const response = await fetch(`/user/${key}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      header: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: newname }),
     });
     if (response.ok) {
@@ -80,7 +80,7 @@ async function POST(username, name) {
   try {
     const response = await fetch("/user", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      header: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
     });
 
