@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>사용자 테이블</h1>
+    <table>
+        <thead>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for data in csvData %}
+            <tr>
+                {% for header in headers %}
+                    <td>{{ data[header] }}</td>
+                {%endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+  </body>
+</html>
