@@ -13,16 +13,20 @@
             {% endfor %}
         </thead>
         <tbody>
-            {% for data in csvData %}
+            {% for data in Data %}
             <tr>
                 {% for header in headers %}
-                    <td>{{ data[header] }}</td>
+                <td>{{ data[header] }}</td>
                 {%endfor %}
             </tr>
             {% endfor %}
         </tbody>
-
     </table>
 
+    <div class="pagination">
+      {%  for num in range(1, totalPages + 1) %}
+        <a id="{{num}}" href="/?page={{num}}" {% if num == page %} class="active" {% endif %}>{{ num }}</a>
+      {% endfor %}
+    </div>
   </body>
 </html>
