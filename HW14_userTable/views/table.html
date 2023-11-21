@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    {% for header in headers %}
+    <th>{{ header }}</th>
+    {% endfor %}
+  </thead>
+  <tbody>
+    {% for data in Data %}
+    <tr>
+      {% for header in headers %}
+      <td><a href="/user/{{data.Id}}">{{ data[header] }}</a></td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

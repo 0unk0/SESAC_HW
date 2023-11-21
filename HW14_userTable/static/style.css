@@ -1,31 +1,24 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    
-}
-th {
-    background-color: lightgrey;
-}
-tr {
-    height: 40px;
-    border-bottom: 1px solid lightgray;
-}
-a{
-    text-decoration: none;
-    color: black;
+.pagination a {
+  display: inline-block;
+  width: 20px;
+  padding: 8px 16px;
+  margin: 10px;
+  border: 1px solid lightgray;
+  color: black;
+  text-decoration: none;
+  text-align: center;
 }
 
-.pagination a{
-    display: inline-block;
-    width: 20px;
-    padding: 8px 16px;
-    border: 1px solid lightgray;
-    color: black;
-    text-decoration: none;
-    text-align: center;
+#prev,
+#next {
+  width: 60px;
 }
 
-.active{
-    background-color: lightblue;
+.active {
+  background-color: lightseagreen;
+  color: white;
+}
+
+form {
+  margin-bottom: 10px;
 }
