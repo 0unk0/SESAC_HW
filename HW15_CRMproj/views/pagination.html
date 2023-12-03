@@ -1,0 +1,13 @@
+<div class="pagination">
+    {% if page !== 1 %}
+      <a id="prev" href="/{{pageName}}?page={{page-1}}"><< Prev</a>
+    {% endif %}
+
+    {%  for num in range(1, totalPages + 1) %}
+      <a id="{{num}}" href="/{{pageName}}?page={{num}}" {% if num == page %} class="active" {% endif %}>{{ num }} </a>
+    {% endfor %}
+
+    {% if totalPages !== 1 and page !== totalPages %}
+      <a id="next" href="/{{pageName}}?page={{page+1}}">Next >></a>
+    {% endif %}
+</div>

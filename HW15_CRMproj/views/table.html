@@ -1,0 +1,19 @@
+<div id="table">
+  <table>
+    <thead>
+      {% for header in headers %} {% if header !== "Id" %}
+      <th>{{ header }}</th>
+      {% endif %} {% endfor %}
+    </thead>
+
+    <tbody>
+      {% for user in table %}
+      <tr onclick="location.href='/{{pageName}}_detail/{{user.Id}}';">
+        {% for header in headers %} {% if header !== "Id" %}
+        <td>{{user[header]}}</td>
+        {% endif %} {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
