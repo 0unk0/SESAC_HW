@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    {% include "nav.html" %}
-
+    {% include "nav.html" %} {% if pageName==="user" %}
     <form>
       <label>Name: <input type="text" name="username" /></label>
       <label
@@ -20,8 +19,7 @@
       </label>
       <button id="searchBtn">검색</button>
     </form>
-
-    {% include "table.html" %} {% include "pagination.html" %}
+    {% endif %} {% include "table.html" %} {% include "pagination.html" %}
     <script src="/static/table.js"></script>
   </body>
 </html>

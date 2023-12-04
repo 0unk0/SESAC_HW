@@ -14,7 +14,7 @@ async function getTotalRecords(tableName) {
   });
 }
 
-function readTableMiddleware(tableName) {
+function readTable(tableName) {
   return async (req, res, next) => {
     const itemsPerPage = 50;
     const page = req.query.page || 1;
@@ -23,7 +23,6 @@ function readTableMiddleware(tableName) {
 
     const { totalRecords } = await getTotalRecords(tableName);
     const totalPages = Math.ceil(totalRecords / itemsPerPage);
-    console.log(totalRecords);
 
     const query = `SELECT * FROM  ${tableName} LIMIT ${itemsPerPage} OFFSET ${startIndex}`;
     db.all(query, (err, rows) => {
@@ -32,12 +31,12 @@ function readTableMiddleware(tableName) {
       } else {
         console.log("테이블 읽기 성공");
         req.table = rows;
-        req.page = page;
-        req.totalPages = totalPages;
+        req.page = parseInt(page);
+        req.totalPages = parseInt(totalPages);
         next();
       }
     });
   };
 }
 
-module.exports = readTableMiddleware;
+module.exports = readTable;
