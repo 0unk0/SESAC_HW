@@ -3,7 +3,11 @@
       <a id="prev" href="/{{pageName}}?page={{page-1}}"><< Prev</a>
     {% endif %}
 
-    {%  for num in range(1, totalPages + 1) %}
+    {% set indexLength = 10 %}
+    {% set startIndex = (page//11) * indexLength + 1 %}
+    {% set endIndex = totalPages + 1 if totalPages < 10 else startIndex + indexLength %}
+
+    {%  for num in range(startIndex, endIndex) %}
       <a id="{{num}}" href="/{{pageName}}?page={{num}}" {% if num == page %} class="active" {% endif %}>{{ num }} </a>
     {% endfor %}
 
