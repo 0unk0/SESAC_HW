@@ -5,6 +5,7 @@ function main(req, res) {
     pageName: req.pageName,
     page: req.page,
     totalPages: req.totalPages,
+    urlFilter: req.urlFilter,
   });
 }
 

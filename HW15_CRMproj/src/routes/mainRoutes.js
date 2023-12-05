@@ -2,10 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const mainController = require("../controllers/mainController.js");
-const readTable = require("../middlewares/readTableMiddleware.js");
+const { readTable, readDetail } = require("../middlewares/readTableMiddleware.js");
 const setPageInfo = require("../middlewares/setPageInfoMiddleware.js");
 
-router.get("/", readTable("users"), setPageInfo("user"), mainController.main);
+router.get("/", (req, res) => {
+  res.redirect("/user");
+});
+
 router.get("/user", readTable("users"), setPageInfo("user"), mainController.main);
 router.get("/order", readTable("orders"), setPageInfo("order"), mainController.main);
 router.get("/orderitem", readTable("orderitems"), setPageInfo("orderitem"), mainController.main);

@@ -2,12 +2,16 @@ const express = require("express");
 const nunjucks = require("nunjucks");
 
 const app = express();
+
 const PORT = 3000;
 
 nunjucks.configure("views", {
   autoescape: true,
   express: app,
 });
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/", express.static("public"));
 app.set("view engine", "html");
