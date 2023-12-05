@@ -6,6 +6,8 @@ function main(req, res) {
     page: req.page,
     totalPages: req.totalPages,
     urlFilter: req.urlFilter,
+    name: req.query.name,
+    gender: req.query.gender,
   });
 }
 

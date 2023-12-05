@@ -1,6 +1,7 @@
 <div class="pagination">
     {% if page !== 1 %}
       <a id="prev" href="/{{pageName}}?page={{page-1}}{% if urlFilter %}&{{urlFilter}}{% endif %}"><< Prev</a>
+      {# <a id="prev" href="/{{pageName}}?page={{page-1}}&name={{name}}&gender={{gender}}"><< Prev</a> #}
     {% endif %}
 
     {% set indexLength = 10 %}
@@ -8,10 +9,12 @@
     {% set endIndex = totalPages + 1 if totalPages < 10 else startIndex + indexLength %}
     
       {%  for num in range(startIndex, endIndex) %}
-        <a id="{{num}}" href="/{{pageName}}?page={{num}}{% if urlFilter%}&{{urlFilter}}{% endif %}" {% if num == page %} class="active" {% endif %}>{{ num }} </a>
+        <a id="{{num}}" href="/{{pageName}}?page={{num}}{% if urlFilter%}&{{urlFilter}}{% endif %}" {% if num == page %} class="active" {% endif %}>{{ num }} </a> 
+        {# <a id="{{num}}" href="/{{pageName}}?page={{num}}&name={{name}}&gender={{gender}}" {% if num == page %} class="active" {% endif %}>{{ num }} </a> #}
       {% endfor %}
 
     {% if totalPages !== 1 and page !== totalPages %}
       <a id="next" href="/{{pageName}}?page={{page+1}}{% if urlFilter%}&{{urlFilter}}{% endif %}">Next >></a>
+      {# <a id="next" href="/{{pageName}}?page={{page+1}}&name={{name}}&gender={{gender}}">Next >></a> #}
     {% endif %}
 </div>
