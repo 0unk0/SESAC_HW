@@ -5,7 +5,7 @@ import { Item } from "./HW10_item.js";
 import { OrderItem } from "./HW10_orderItem.js";
 import { writeCSV } from "./HW10_common.js";
 
-function generateUsers(numOfUsers) {
+async function generateUsers(numOfUsers) {
   const usersListTypeCSV = ["Id,Name,Gender,Age,Birthdate,Address"];
   const user = new User();
 
@@ -14,10 +14,10 @@ function generateUsers(numOfUsers) {
     usersListTypeCSV.push(user.getUserTypeCSV());
   }
 
-  writeCSV("user.csv", usersListTypeCSV.join("\n"));
+  await writeCSV("user.csv", usersListTypeCSV.join("\n"));
 }
 
-function generateStores(numOfStores) {
+async function generateStores(numOfStores) {
   const storesListTypeCSV = ["Id,Name,Type,Address"];
   const store = new Store();
 
@@ -26,10 +26,10 @@ function generateStores(numOfStores) {
     storesListTypeCSV.push(store.getStoreTypeCSV());
   }
 
-  writeCSV("store.csv", storesListTypeCSV.join("\n"));
+  await writeCSV("store.csv", storesListTypeCSV.join("\n"));
 }
 
-function generateOrders(numOfOrders) {
+async function generateOrders(numOfOrders) {
   const ordersListTypeCSV = ["Id,OrderAt,StoreId,UserId"];
   const order = new Order();
 
@@ -38,10 +38,10 @@ function generateOrders(numOfOrders) {
     ordersListTypeCSV.push(order.getOrderTypeCSV());
   }
 
-  writeCSV("order.csv", ordersListTypeCSV.join("\n"));
+  await writeCSV("order.csv", ordersListTypeCSV.join("\n"));
 }
 
-function generateItems(numOfItems) {
+async function generateItems(numOfItems) {
   const itemsListTypeCSV = ["Id,Name,Type,UnitPrice"];
   const item = new Item();
 
@@ -50,10 +50,10 @@ function generateItems(numOfItems) {
     itemsListTypeCSV.push(item.getItemTypeCSV());
   }
 
-  writeCSV("item.csv", itemsListTypeCSV.join("\n"));
+  await writeCSV("item.csv", itemsListTypeCSV.join("\n"));
 }
 
-function generateOrderItems(numOfOrderItems) {
+async function generateOrderItems(numOfOrderItems) {
   const orderitemsList = ["Id,OrderId,ItemId"];
   const orderItem = new OrderItem();
 
@@ -62,15 +62,15 @@ function generateOrderItems(numOfOrderItems) {
     orderitemsList.push(orderItem.getOrderItemTypeCSV());
   }
 
-  writeCSV("orderitem.csv", orderitemsList.join("\n"));
+  await writeCSV("orderitem.csv", orderitemsList.join("\n"));
 }
 
-function generateData() {
-  generateUsers(1000);
-  generateStores(100);
-  generateOrders(10000);
-  generateItems(20);
-  generateOrderItems(50000);
+async function generateData() {
+  await generateUsers(1000);
+  await generateStores(100);
+  await generateOrders(10000);
+  await generateItems(20);
+  await generateOrderItems(50000);
 }
 
 generateData();
