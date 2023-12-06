@@ -16,7 +16,7 @@ const nameList = {
 
 export class Store {
   getStoreTypeCSV() {
-    return `${this.Id},${this.Address},${this.Type},${this.Name}`;
+    return `${this.Id},${this.Name},${this.Type},${this.Address}`;
   }
   setStore() {
     this.Id = this.generateStoreId();
