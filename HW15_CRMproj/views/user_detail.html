@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRM project</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    {% include "nav.html" %}
+    <div>
+      <p>고객 정보</p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Birthdate</th>
+          <th>Address</th>
+        </thead>
+
+        <tbody>
+          {% for row in userInfo %}
+          <tr>
+            <td>{{row.Name}}</td>
+            <td>{{row.Gender}}</td>
+            <td>{{row.Age}}</td>
+            <td>{{row.Birthdate}}</td>
+            <td>{{row.Address}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p>주문 정보</p>
+      <table>
+        <thead>
+          <th>Order Id</th>
+          <th>Purchased Date</th>
+          <th>Purchased Location</th>
+        </thead>
+
+        <tbody>
+          {% for row in userOrderInfo %}
+          <tr>
+            <td><a href="/orderitem_detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+            <td>{{row.PurchasedDate}}</td>
+            <td><a href="/store_detail/{{row.PurchasedLocation}}">{{row.PurchasedLocation}}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="/static/table.js"></script>
+  </body>
+</html>

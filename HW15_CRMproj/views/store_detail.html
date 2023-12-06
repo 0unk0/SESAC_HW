@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRM project</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    {% include "nav.html" %}
+    <div>
+      {% if daily %}
+      <a href="javascript:history.back()">Back</a>
+      {% endif %}
+
+      <p>매장 정보</p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Address</th>
+        </thead>
+
+        <tbody>
+          {% for row in storeInfo %}
+          <tr>
+            <td>{{row.Name}}</td>
+            <td>{{row.Type}}</td>
+            <td>{{row.Address}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% if not daily %}
+      <p>월간 매출액</p>
+      {% else %}
+      <p>일간 매출액</p>
+      {% endif %}
+      <table>
+        <thead>
+          {% if not daily %}
+          <th>Month</th>
+          {% else %}
+          <th>Day</th>
+          {% endif %}
+          <th>Revenue</th>
+          <th>Count</th>
+        </thead>
+
+        <tbody>
+          {% if not daily %} {% for row in monthlyRevenueInfo %}
+          <tr>
+            <td>
+              <a href="/store_detail/{{storeInfo[0].Id}}?rev_month={{row.Month}}">{{row.Month}}</a>
+            </td>
+            <td>{{row.Revenue}}</td>
+            <td>{{row.Count}}</td>
+          </tr>
+          {% endfor %} {% else %} {% for row in dailyRevenueInfo %}
+          <tr>
+            <td>{{row.Day}}</td>
+            <td>{{row.Revenue}}</td>
+            <td>{{row.Count}}</td>
+          </tr>
+          {% endfor %} {% endif %}
+        </tbody>
+      </table>
+
+      <p>단골 고객</p>
+      <table>
+        <thead>
+          <th>User Id</th>
+          <th>Name</th>
+          <th>Frequency</th>
+        </thead>
+
+        <tbody>
+          {% for row in userRankInfo %}
+          <tr>
+            <td>
+              <a href="/user_detail/{{row.userId}}">{{row.userId}}</a>
+            </td>
+            <td>{{row.Name}}</td>
+            <td>{{row.Frequency}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="/static/table.js"></script>
+  </body>
+</html>

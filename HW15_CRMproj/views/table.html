@@ -7,10 +7,10 @@
     </thead>
 
     <tbody>
-      {% for user in table %}
-      <tr onclick="location.href='/{{pageName}}_detail/{{user.Id}}';">
+      {% for row in table %}
+      <tr onclick="location.href='/{{pageName}}_detail/{{row.Id}}';">
         {% for header in headers %}
-        <td>{{user[header]}}</td>
+        <td>{{row[header]}}</td>
         {% endfor %}
       </tr>
       {% endfor %}

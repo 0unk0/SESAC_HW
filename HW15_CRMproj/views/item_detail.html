@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRM project</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    {% include "nav.html" %}
+    <div>
+      <p>상품 정보</p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Unit Price</th>
+        </thead>
+
+        <tbody>
+          {% for row in itemInfo %}
+          <tr>
+            <td>{{row.Name}}</td>
+            <td>{{row.UnitPrice}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {#
+      <p>월간 매출액</p>
+      <table>
+        <thead>
+          <th>Month</th>
+          <th>Revenue</th>
+          <th>Count</th>
+        </thead>
+
+        <tbody>
+          {% for row in monthlyRevenueInfo %}
+          <tr>
+            <td>{{row.Month}}</td>
+            <td>{{row.Revenue}}</td>
+            <td>{{row.Count}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      #}
+    </div>
+    <script src="/static/table.js"></script>
+  </body>
+</html>
