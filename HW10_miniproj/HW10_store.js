@@ -38,6 +38,6 @@ export class Store {
     let gu = addr.split(" ")[1];
     let name = nameList[gu];
     let num = Math.floor(Math.random() * 10) + 1;
-    return `${name}${num}호점`;
+    return `${name} ${num}호점`;
   }
 }
