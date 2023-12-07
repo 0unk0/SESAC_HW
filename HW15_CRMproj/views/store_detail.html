@@ -48,7 +48,7 @@
         </thead>
 
         <tbody>
-          {% if not daily %} {% for row in monthlyRevenueInfo %}
+          {% if not daily %} {% for row in monthlyRevenue %}
           <tr>
             <td>
               <a href="/store_detail/{{storeInfo[0].Id}}?rev_month={{row.Month}}">{{row.Month}}</a>
@@ -56,7 +56,7 @@
             <td>{{row.Revenue}}</td>
             <td>{{row.Count}}</td>
           </tr>
-          {% endfor %} {% else %} {% for row in dailyRevenueInfo %}
+          {% endfor %} {% else %} {% for row in dailyRevenue %}
           <tr>
             <td>{{row.Day}}</td>
             <td>{{row.Revenue}}</td>
@@ -75,7 +75,7 @@
         </thead>
 
         <tbody>
-          {% for row in userRankInfo %}
+          {% for row in regularUsers %}
           <tr>
             <td>
               <a href="/user_detail/{{row.userId}}">{{row.userId}}</a>
