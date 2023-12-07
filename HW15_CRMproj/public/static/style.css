@@ -2,7 +2,6 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 /* ---------- nav ---------- */
@@ -16,7 +15,7 @@ ol {
   overflow: hidden;
 }
 
-li {
+ol li {
   display: inline-block;
   margin-left: 30px;
 }
@@ -33,7 +32,6 @@ li {
 
 /* ---------- search ---------- */
 form {
-  width: 100%;
   padding: 20px;
   margin-left: 30px;
 }
@@ -101,5 +99,8 @@ tr:hover {
 
 .active {
   background-color: rgb(160, 170, 160);
-  /* color: white; */
+}
+/* ------------------------- */
+ul {
+  padding-left: 40px;
 }

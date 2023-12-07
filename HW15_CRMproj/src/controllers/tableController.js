@@ -106,6 +106,24 @@ function detailQuery(tableName, rev_month) {
       return `SELECT * FROM stores WHERE Id = ?`;
     case "itemInfo":
       return `SELECT Name, UnitPrice FROM items WHERE ID = ?`;
+    case "mostVisitedInfo":
+      return `SELECT stores.Name, COUNT(* ) AS Count
+        FROM users 
+        JOIN orders ON users.id = orders.UserId
+        JOIN stores On orders.StoreId = stores.Id
+        WHERE users.id = ?
+        GROUP BY stores.Id
+        ORDER BY Count DESC
+        LIMIT 5`;
+    case "mostOrderedInfo":
+      return `SELECT items.Name, COUNT(* ) AS Count
+        FROM items
+        JOIN orderItems ON items.id = orderitems.ItemId
+        JOIN orders On orderitems.OrderId = orders.Id
+        WHERE orders.UserId = ?
+        GROUP BY items.Id
+        ORDER BY Count DESC
+        LIMIT 5`;
     case "monthlyRevenueInfo":
       return `SELECT strftime('%Y-%m', orders.OrderAt) AS Month, SUM(UnitPrice) AS Revenue, COUNT(*) AS Count
         FROM stores
@@ -135,6 +153,13 @@ function detailQuery(tableName, rev_month) {
         ORDER BY Frequency DESC
         LIMIT 10`;
       return query;
+    case "itemMonthlyRevenueInfo":
+      return `SELECT strftime('%Y-%m', orders.OrderAt) AS Month, SUM(UnitPrice) AS Revenue, COUNT(*) AS Count
+            FROM orders
+            JOIN orderitems ON orders.Id = orderitems.OrderId
+            JOIN items ON items.id = orderitems.Itemid
+            WHERE items.id = ?
+            GROUP BY Month`;
   }
 }
 // -------------------------------------------------

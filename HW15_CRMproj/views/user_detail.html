@@ -48,6 +48,18 @@
           {% endfor %}
         </tbody>
       </table>
+      <p>자주 방문한 매장 Top 5</p>
+      <ul>
+        {% for row in mostVisitedInfo %}
+        <li>{{row.Name}} ({{row.Count}}번 방문)</li>
+        {% endfor %}
+      </ul>
+      <p>자주 주문한 상품명 Top 5</p>
+      <ul>
+        {% for row in mostOrderedInfo %}
+        <li>{{row.Name}} ({{row.Count}}번 주문)</li>
+        {% endfor %}
+      </ul>
     </div>
     <script src="/static/table.js"></script>
   </body>

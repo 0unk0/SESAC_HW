@@ -23,6 +23,8 @@ async function user_detail(req, res) {
   res.render("user_detail", {
     userInfo: await tableController.readDetailTable("userInfo", req),
     userOrderInfo: await tableController.readDetailTable("userOrderInfo", req),
+    mostVisitedInfo: await tableController.readDetailTable("mostVisitedInfo", req),
+    mostOrderedInfo: await tableController.readDetailTable("mostOrderedInfo", req),
   });
 }
 
@@ -52,6 +54,7 @@ async function store_detail(req, res) {
 async function item_detail(req, res) {
   res.render("item_detail", {
     itemInfo: await tableController.readDetailTable("itemInfo", req),
+    itemMonthlyRevenueInfo: await tableController.readDetailTable("itemMonthlyRevenueInfo", req),
   });
 }
 module.exports = { main, user_detail, order_detail, orderitem_detail, store_detail, item_detail };

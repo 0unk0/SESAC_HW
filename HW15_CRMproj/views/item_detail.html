@@ -24,7 +24,7 @@
           {% endfor %}
         </tbody>
       </table>
-      {#
+
       <p>월간 매출액</p>
       <table>
         <thead>
@@ -34,7 +34,7 @@
         </thead>
 
         <tbody>
-          {% for row in monthlyRevenueInfo %}
+          {% for row in itemMonthlyRevenueInfo %}
           <tr>
             <td>{{row.Month}}</td>
             <td>{{row.Revenue}}</td>
@@ -43,7 +43,6 @@
           {% endfor %}
         </tbody>
       </table>
-      #}
     </div>
     <script src="/static/table.js"></script>
   </body>

@@ -7,13 +7,24 @@
     </thead>
 
     <tbody>
-      {% for row in table %}
+      {% for row in table %} {% if pageName == "order" %}
+      <tr onclick="location.href='/orderitem_detail/{{row.Id}}';">
+        {% for header in headers %}
+        <td>{{row[header]}}</td>
+        {% endfor %}
+      </tr>
+      {% elif pageName == "orderitem" %}
+      <tr>
+        <td><a href="/order/{{row.userId}}">{{row.OrderId}}</a></td>
+        <td><a href="/item_detail/{{row.userId}}">{{row.ItemId}}</a></td>
+      </tr>
+      {% else %}
       <tr onclick="location.href='/{{pageName}}_detail/{{row.Id}}';">
         {% for header in headers %}
         <td>{{row[header]}}</td>
         {% endfor %}
       </tr>
-      {% endfor %}
+      {% endif %} {% endfor %}
     </tbody>
   </table>
 </div>
