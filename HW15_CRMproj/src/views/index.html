@@ -1,25 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>CRM project</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    {% include "nav.html" %} {% if pageName==="user" %}
-    <form>
-      <label>Name: <input type="text" name="name" value="{{name}}" /></label>
-      <label
-        >Gender:
-        <select name="gender" value="{{gender}}">
-          <option value=""></option>
-          <option {% if gender=== "Female" %} selected {% endif %} value="Female">Female</option>
-          <option {% if gender=== "Male" %} selected {% endif %} value="Male">Male</option>
-        </select>
-      </label>
-      <button id="searchBtn">검색</button>
-    </form>
-    {% endif %} {% include "table.html" %} {% include "pagination.html" %}
-    <script src="/static/table.js"></script>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block search %}
+  {% if pageName==="user" %} 
+    {% include "partials/search.html" %} 
+  {% endif %} 
+{% endblock %}
+
+{% block table %}
+  <div id="mainTable">
+    <table>
+      <thead>
+        {% for header in headers %}
+          <th>{{ header }}</th>
+        {% endfor %}
+      </thead>
+      <tbody>
+        {% for row in table %} 
+          <tr>
+            {% if pageName == "orderitem" %}
+                <td>{{row.Id}}</td>
+                <td><a href="/order_detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+                <td><a href="/item_detail/{{row.ItemId}}">{{row.ItemId}}</a></td>
+
+            {% else %}
+              {% for header in headers %}
+                {% if header == "Id" %}
+                  {% if pageName == "order" %}
+                    <td><a href="/orderitem_detail/{{row[header]}}">{{row[header]}}</a></td>
+                  {% else %}
+                  <td><a href="/{{pageName}}_detail/{{row[header]}}">{{row[header]}}</a></td>   
+                  {% endif %}
+
+                {% else %}
+                  <td>{{row[header]}}</td>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% block pagination %}
+  {% include "partials/pagination.html" %}
+{% endblock %}

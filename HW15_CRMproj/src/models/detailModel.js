@@ -1,5 +1,6 @@
-const executeQuery = require("../utils/executeQuery");
+const executeQuery = require("../utils/dbUtils");
 
+// ========== User ==========
 class userModel {
   constructor(id) {
     this.id = id;
@@ -38,6 +39,7 @@ class userModel {
   }
 }
 
+// ========== Store ==========
 class storeModel {
   constructor(id, rev_month) {
     this.id = id;
@@ -83,11 +85,12 @@ class storeModel {
         ORDER BY Frequency DESC
         LIMIT 10`;
 
-    const params = this.rev_month ? [this.id, this, rev_month] : this.id;
+    const params = this.rev_month ? [this.id, this.rev_month] : this.id;
     return executeQuery(query, params);
   }
 }
 
+// ========== Order ==========
 class orderModel {
   constructor(id) {
     this.id = id;
@@ -99,6 +102,7 @@ class orderModel {
   }
 }
 
+// ========== Orderitem ==========
 class orderitemModel {
   constructor(id) {
     this.id = id;
@@ -110,6 +114,7 @@ class orderitemModel {
   }
 }
 
+// ========== Item ==========
 class itemModel {
   constructor(id) {
     this.id = id;

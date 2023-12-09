@@ -1,66 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>CRM project</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    {% include "nav.html" %}
-    <div>
-      <p>고객 정보</p>
-      <table>
-        <thead>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Birthdate</th>
-          <th>Address</th>
-        </thead>
+{% extends "base.html" %}
+{% block table %}
+  <p>고객 정보</p>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Birthdate</th>
+      <th>Address</th>
+    </thead>
+    <tbody>
+      {% for row in userInfo %}
+      <tr>
+        <td>{{row.Name}}</td>
+        <td>{{row.Gender}}</td>
+        <td>{{row.Age}}</td>
+        <td>{{row.Birthdate}}</td>
+        <td>{{row.Address}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-        <tbody>
-          {% for row in userInfo %}
-          <tr>
-            <td>{{row.Name}}</td>
-            <td>{{row.Gender}}</td>
-            <td>{{row.Age}}</td>
-            <td>{{row.Birthdate}}</td>
-            <td>{{row.Address}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <p>주문 정보</p>
-      <table>
-        <thead>
-          <th>Order Id</th>
-          <th>Purchased Date</th>
-          <th>Purchased Location</th>
-        </thead>
+  <p>주문 정보</p>
+  <table>
+    <thead>
+      <th>Order Id</th>
+      <th>Purchased Date</th>
+      <th>Purchased Location</th>
+    </thead>
+    <tbody>
+      {% for row in orderInfo %}
+      <tr>
+        <td><a href="/orderitem_detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+        <td>{{row.PurchasedDate}}</td>
+        <td><a href="/store_detail/{{row.PurchasedLocation}}">{{row.PurchasedLocation}}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-        <tbody>
-          {% for row in orderInfo %}
-          <tr>
-            <td><a href="/orderitem_detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
-            <td>{{row.PurchasedDate}}</td>
-            <td><a href="/store_detail/{{row.PurchasedLocation}}">{{row.PurchasedLocation}}</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <p>자주 방문한 매장 Top 5</p>
-      <ul>
-        {% for row in topVisitedStores %}
-        <li>{{row.Name}} ({{row.Count}}번 방문)</li>
-        {% endfor %}
-      </ul>
-      <p>자주 주문한 상품명 Top 5</p>
-      <ul>
-        {% for row in topOrderedItems %}
-        <li>{{row.Name}} ({{row.Count}}번 주문)</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <script src="/static/table.js"></script>
-  </body>
-</html>
+  <p>자주 방문한 매장 Top 5</p>
+  <ul>
+    {% for row in topVisitedStores %}
+    <li>{{row.Name}} ({{row.Count}}번 방문)</li>
+    {% endfor %}
+  </ul>
+
+  <p>자주 주문한 상품명 Top 5</p>
+  <ul>
+    {% for row in topOrderedItems %}
+    <li>{{row.Name}} ({{row.Count}}번 주문)</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

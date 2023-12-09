@@ -1,6 +1,5 @@
 const mainModel = require("../models/mainModel.js");
-const makeWhere = require("../utils/makeWhere.js");
-const getHeaders = require("../utils/getHeaders.js");
+const { getHeaders, makeWhere } = require("../utils/controllerUtils.js");
 
 function main(pageName) {
   return async (req, res) => {

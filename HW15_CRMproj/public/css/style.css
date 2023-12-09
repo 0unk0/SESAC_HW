@@ -6,7 +6,7 @@
 
 /* ---------- nav ---------- */
 nav {
-  background-color: darkslategrey;
+  background-color:rgb(30, 30, 30);
   width: 100%;
   padding: 20px;
 }
@@ -28,31 +28,24 @@ ol li {
 .white {
   color: white;
 }
-/* ------------------------- */
 
 /* ---------- search ---------- */
 form {
-  padding: 20px;
-  margin-left: 30px;
-}
-
-label {
-  margin-right: 10px;
+  margin-top: 30px;
 }
 
 #searchBtn {
   width: 40px;
 }
-/* ------------------------- */
 
 /* ---------- table ---------- */
-
-#table {
-  width: 95%;
+#mainTable {
   height: 650px;
   margin: auto;
+  margin-top: 30px;
   overflow-y: auto;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -69,38 +62,58 @@ td {
 th {
   position: sticky;
   top: 0px;
-  background-color: rgb(160, 170, 160);
-  /* border-bottom: 1px solid black; */
+  background-color: white;
 }
 
 tr:hover {
   background-color: whitesmoke;
 }
-/* ------------------------- */
+
+/* ---------- Top5 ---------- */
+ul {
+  padding-left: 40px;
+}
+
+ul li {
+  padding: 7px;
+}
+
+/* ---------- detail ---------- */
+#content {  
+  padding: 0px 30px 0px 30px;
+  margin: auto;
+}
+
+p {
+  margin-top: 30px;
+}
+
+a {
+  color:royalblue;
+  text-decoration: none;
+}
+
+a:hover {
+  color:darkblue;
+  text-decoration:underline;
+}
 
 /* ---------- pagination ---------- */
 .pagination {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  margin-top: 10px;
-  padding: 20px;
+  margin-top: 30px;
   text-align: center;
-  overflow-y: auto;
 }
 
 .pagination a {
   display: inline-block;
   padding: 8px 16px;
   border: 1px solid lightgray;
+  border-radius: 3px;
   color: black;
   text-decoration: none;
 }
 
 .active {
-  background-color: rgb(160, 170, 160);
+  background-color: rgb(222, 222, 222);
 }
 /* ------------------------- */
-ul {
-  padding-left: 40px;
-}

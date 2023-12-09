@@ -23,18 +23,15 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/user", mainController.main("user"));
-app.get("/user_detail/:id", detailController.user_detail);
-
 app.get("/store", mainController.main("store"));
-app.get("/store_detail/:id", detailController.store_detail);
-
 app.get("/order", mainController.main("order"));
-app.get("/order_detail/:id", detailController.order_detail);
-
 app.get("/orderitem", mainController.main("orderitem"));
-app.get("/orderitem_detail/:id", detailController.orderitem_detail);
-
 app.get("/item", mainController.main("item"));
+
+app.get("/user_detail/:id", detailController.user_detail);
+app.get("/store_detail/:id", detailController.store_detail);
+app.get("/order_detail/:id", detailController.order_detail);
+app.get("/orderitem_detail/:id", detailController.orderitem_detail);
 app.get("/item_detail/:id", detailController.item_detail);
 
 // ========= 서버 시작 =========

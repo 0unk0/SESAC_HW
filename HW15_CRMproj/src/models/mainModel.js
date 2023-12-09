@@ -1,4 +1,4 @@
-const executeQuery = require("../utils/executeQuery");
+const executeQuery = require("../utils/dbUtils");
 
 class mainModel {
   constructor(data) {
