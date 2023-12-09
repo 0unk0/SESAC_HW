@@ -15,8 +15,8 @@
       </tr>
       {% elif pageName == "orderitem" %}
       <tr>
-        <td><a href="/order/{{row.userId}}">{{row.OrderId}}</a></td>
-        <td><a href="/item_detail/{{row.userId}}">{{row.ItemId}}</a></td>
+        <td><a href="/order_detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+        <td><a href="/item_detail/{{row.ItemId}}">{{row.ItemId}}</a></td>
       </tr>
       {% else %}
       <tr onclick="location.href='/{{pageName}}_detail/{{row.Id}}';">
