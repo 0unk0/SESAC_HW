@@ -1,11 +1,6 @@
-const {
-  userModel,
-  storeModel,
-  orderModel,
-  orderitemModel,
-  itemModel,
-} = require("../models/detailModel.js");
+const { userModel, storeModel, orderModel, orderitemModel, itemModel, } = require("../models/detailModel.js");
 
+// ========== User ==========
 async function user_detail(req, res) {
   try {
     const id = req.params.id;
@@ -28,6 +23,7 @@ async function user_detail(req, res) {
   }
 }
 
+// ========== Store ==========
 async function store_detail(req, res) {
   try {
     const id = req.params.id;
@@ -54,6 +50,7 @@ async function store_detail(req, res) {
   }
 }
 
+// ========== Order ==========
 async function order_detail(req, res) {
   try {
     const id = req.params.id;
@@ -70,6 +67,7 @@ async function order_detail(req, res) {
   }
 }
 
+// ========== Orderitem ==========
 async function orderitem_detail(req, res) {
   try {
     const id = req.params.id;
@@ -86,6 +84,7 @@ async function orderitem_detail(req, res) {
   }
 }
 
+// ========== Item ==========
 async function item_detail(req, res) {
   try {
     const id = req.params.id;
