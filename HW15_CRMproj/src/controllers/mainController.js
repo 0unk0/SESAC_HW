@@ -3,7 +3,8 @@ const { getHeaders, makeWhere } = require("../utils/controllerUtils.js");
 
 async function main(req, res) {
   try {
-    const pageName = req.url.split("/")[1];
+    const pageName = req._parsedUrl.pathname.split("/")[1];
+
     const { name, gender, page = 1 } = req.query;
     const where = makeWhere(name, gender);
 
