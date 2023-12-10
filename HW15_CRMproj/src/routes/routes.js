@@ -8,11 +8,11 @@ router.get("/", (req, res, next) => {
     res.redirect("/user");
 });
 
-router.get("/user", mainController.main("user"));
-router.get("/store", mainController.main("store"));
-router.get("/order", mainController.main("order"));
-router.get("/orderitem", mainController.main("orderitem"));
-router.get("/item", mainController.main("item"));
+router.get("/user", mainController.main);
+router.get("/store", mainController.main);
+router.get("/order", mainController.main);
+router.get("/orderitem", mainController.main);
+router.get("/item", mainController.main);
 
 router.get("/user_detail/:id", detailController.user_detail);
 router.get("/store_detail/:id", detailController.store_detail);

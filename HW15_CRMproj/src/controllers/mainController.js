@@ -1,8 +1,9 @@
 const mainModel = require("../models/mainModel.js");
 const { getHeaders, makeWhere } = require("../utils/controllerUtils.js");
 
-function main(pageName) {
-  return async (req, res) => {
+async function main(req, res) {
+  try {
+    const pageName = req.url.split("/")[1];
     const { name, gender, page = 1 } = req.query;
     const where = makeWhere(name, gender);
 
@@ -27,7 +28,10 @@ function main(pageName) {
       name,
       gender,
     });
-  };
+  } catch (err) {
+    console.error("데이터베이스 읽기 실패", err);
+    res.status(500).send("Internal Server Error");
+  }
 }
 
 module.exports = { main };
