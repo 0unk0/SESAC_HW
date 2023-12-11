@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block table %}
+<table>
+  <thead>
+    <th>Id</th>
+    <th>Order At</th>
+    <th>Store Id</th>
+    <th>User Id</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{orderInfo.Id}}</td>
+      <td>{{orderInfo.OrderAt}}</td>
+      <td><a href="/store/detail/{{orderInfo.StoreId}}">{{orderInfo.StoreId}}</a></td>
+      <td><a href="/user/detail/{{orderInfo.UserId}}">{{orderInfo.UserId}}</a></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

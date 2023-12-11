@@ -12,8 +12,7 @@ class mainModel {
     if (this.where) {
       query += this.where;
     }
-    let totalRecords = await executeQuery(query);
-    totalRecords = totalRecords[0].totalRecords;
+    let { totalRecords } = await executeQuery.getSingleQuery(query);
     const totalPages = Math.ceil(totalRecords / this.itemsPerPage);
     return totalPages;
   }
@@ -25,7 +24,7 @@ class mainModel {
     }
     query += ` LIMIT ${this.itemsPerPage} OFFSET ${this.startIndex}`;
 
-    return await executeQuery(query);
+    return await executeQuery.getAllQuery(query);
   }
 }
 

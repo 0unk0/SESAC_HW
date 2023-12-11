@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block table %}
+<p>고객 정보</p>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Birthdate</th>
+    <th>Address</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{userInfo.Name}}</td>
+      <td>{{userInfo.Gender}}</td>
+      <td>{{userInfo.Age}}</td>
+      <td>{{userInfo.Birthdate}}</td>
+      <td>{{userInfo.Address}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>주문 정보</p>
+<table>
+  <thead>
+    <th>Order Id</th>
+    <th>Purchased Date</th>
+    <th>Purchased Location</th>
+  </thead>
+  <tbody>
+    {% for row in orderInfo %}
+    <tr>
+      <td><a href="/orderitem/detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+      <td>{{row.PurchasedDate}}</td>
+      <td><a href="/store/detail/{{row.PurchasedLocation}}">{{row.PurchasedLocation}}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>자주 방문한 매장 Top 5</p>
+<ul>
+  {% for row in topVisitedStores %}
+  <li>{{row.Name}} ({{row.Count}}번 방문)</li>
+  {% endfor %}
+</ul>
+
+<p>자주 주문한 상품명 Top 5</p>
+<ul>
+  {% for row in topOrderedItems %}
+  <li>{{row.Name}} ({{row.Count}}번 주문)</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+<nav>
+  <ol>
+    <li><a class="navPage {% if pagingData.pageName === 'user' %} white {% endif %}" href="/user">User</a></li>
+    <li>
+      <a class="navPage {% if pagingData.pageName === 'order' %} white {% endif %}" href="/order">Order</a>
+    </li>
+    <li>
+      <a class="navPage {% if pagingData.pageName === 'orderitem' %} white {% endif %}" href="/orderitem">Order Item</a>
+    </li>
+    <li><a class="navPage {% if pagingData.pageName === 'item' %} white {% endif %}" href="/item">Item</a></li>
+    <li>
+      <a class="navPage {% if pagingData.pageName === 'store' %} white {% endif %}" href="/store">Store</a>
+    </li>
+  </ol>
+</nav>

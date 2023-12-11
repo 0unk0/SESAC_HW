@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block table %} {% if daily %}
+<p>
+  <a href="javascript:history.back()"><strong>Back</strong></a>
+</p>
+{% endif %}
+
+<p>매장 정보</p>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Address</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{storeInfo.Name}}</td>
+      <td>{{storeInfo.Type}}</td>
+      <td>{{storeInfo.Address}}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% if not daily %}
+<p>월간 매출액</p>
+<table>
+  <thead>
+    <th>Month</th>
+    <th>Revenue</th>
+    <th>Count</th>
+  </thead>
+  <tbody>
+    {% for row in monthlyRevenue %}
+    <tr>
+      <td>
+        <a href="/store/detail/{{storeInfo[0].Id}}?rev_month={{row.Month}}">{{row.Month}}</a>
+      </td>
+      <td>{{row.Revenue}}</td>
+      <td>{{row.Count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>일간 매출액</p>
+<table>
+  <thead>
+    <th>Day</th>
+    <th>Revenue</th>
+    <th>Count</th>
+  </thead>
+  <tbody>
+    {% for row in dailyRevenue %}
+    <tr>
+      <td>{{row.Day}}</td>
+      <td>{{row.Revenue}}</td>
+      <td>{{row.Count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<p>단골 고객</p>
+<table>
+  <thead>
+    <th>User Id</th>
+    <th>Name</th>
+    <th>Frequency</th>
+  </thead>
+  <tbody>
+    {% for row in regularUsers %}
+    <tr>
+      <td>
+        <a href="/user/detail/{{row.userId}}">{{row.userId}}</a>
+      </td>
+      <td>{{row.Name}}</td>
+      <td>{{row.Frequency}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

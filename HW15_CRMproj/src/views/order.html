@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block table %}
+<div id="mainTable">
+  <table>
+    <thead>
+      {% for header in tableData.headers %}
+      <th>{{ header }}</th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for row in tableData.table %}
+      <tr>
+        {% for header in tableData.headers %} {% if header == "Id" %}
+        <td><a href="/orderitem/detail/{{row[header]}}">{{row[header]}}</a></td>
+        {% else %}
+        <td>{{row[header]}}</td>
+        {% endif %} {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %} {% block pagination %} {% include "common/pagination.html" %} {% endblock %}

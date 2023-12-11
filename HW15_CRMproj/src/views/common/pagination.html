@@ -1,0 +1,18 @@
+{# 페이징 객체? 만들어서 계산한 뒤 controller에서 값 넘겨주는게 좋지 않을까.. #}
+{% set indexLength = 10 %}
+{% set startIndex = ((pagingData.page // (indexLength + 1)) * indexLength) + 1 %}
+{% set endIndex = startIndex + pagingData.totalPages if pagingData.totalPages < 10 else startIndex + indexLength %}
+
+<div class="pagination">
+  {% if pagingData.page > 1 %}
+    <a id="prev" href="/{{pagingData.pageName}}?page={{pagingData.page|int-1}}&name={{search.name}}&gender={{search.gender}}"><< Prev</a> 
+  {% endif %}
+
+  {%  for num in range(startIndex, endIndex) %}
+    <a id="{{num}}" href="/{{pagingData.pageName}}?page={{num}}&name={{search.name}}&gender={{search.gender}}" {% if num == pagingData.page %} class="active" {% endif %}>{{ num }} </a> 
+  {% endfor %}
+
+  {% if pagingData.totalPages != 1 and pagingData.page < pagingData.totalPages %}
+    <a id="next" href="/{{pagingData.pageName}}?page={{pagingData.page|int+1}}&name={{search.name}}&gender={{search.gender}}">Next >></a> 
+  {% endif %}
+</div>

@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block search %} {% if pageName==="user" %} {% include "common/search.html" %} {% endif %} {% endblock %} {%
+block table %}
+<div id="mainTable">
+  <table>
+    <thead>
+      {% for header in tableData.headers %}
+      <th>{{ header }}</th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for row in tableData.table %}
+      <tr>
+        <td>{{row.Id}}</td>
+        <td><a href="/order/detail/{{row.OrderId}}">{{row.OrderId}}</a></td>
+        <td><a href="/item/detail/{{row.ItemId}}">{{row.ItemId}}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %} {% block pagination %} {% include "common/pagination.html" %} {% endblock %}
