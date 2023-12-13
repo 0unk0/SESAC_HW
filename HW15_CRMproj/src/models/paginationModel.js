@@ -1,11 +1,21 @@
 const executeQuery = require("../utils/dbUtils");
 
-class mainModel {
+class paginationModel {
   constructor(data) {
-    this.tableName = data.tableName;
     this.itemsPerPage = 50;
-    this.startIndex = (data.page - 1) * this.itemsPerPage;
+    this.tableStartIndex = (data.page - 1) * this.itemsPerPage;
+    this.tableName = data.tableName;
     this.where = data.where;
+  }
+
+  async getPaginationTable() {
+    let query = `SELECT * FROM  ${this.tableName}`;
+    if (this.where) {
+      query += this.where;
+    }
+    query += ` LIMIT ${this.itemsPerPage} OFFSET ${this.tableStartIndex}`;
+
+    return await executeQuery.getAllQuery(query);
   }
   async getTotalPages() {
     let query = `SELECT COUNT(*) AS totalRecords FROM ${this.tableName}`;
@@ -16,16 +26,6 @@ class mainModel {
     const totalPages = Math.ceil(totalRecords / this.itemsPerPage);
     return totalPages;
   }
-
-  async readTable() {
-    let query = `SELECT * FROM  ${this.tableName}`;
-    if (this.where) {
-      query += this.where;
-    }
-    query += ` LIMIT ${this.itemsPerPage} OFFSET ${this.startIndex}`;
-
-    return await executeQuery.getAllQuery(query);
-  }
 }
 
-module.exports = mainModel;
+module.exports = paginationModel;

@@ -32,7 +32,7 @@
     {% for row in monthlyRevenue %}
     <tr>
       <td>
-        <a href="/store/detail/{{storeInfo[0].Id}}?rev_month={{row.Month}}">{{row.Month}}</a>
+        <a href="/store/detail/{{storeInfo.Id}}?rev_month={{row.Month}}">{{row.Month}}</a>
       </td>
       <td>{{row.Revenue}}</td>
       <td>{{row.Count}}</td>

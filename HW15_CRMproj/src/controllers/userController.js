@@ -1,4 +1,4 @@
-const mainModel = require("../models/mainModel.js");
+const paginationModel = require("../models/paginationModel.js");
 const userModel = require("../models/userModel.js");
 
 async function user(req, res) {
@@ -7,16 +7,16 @@ async function user(req, res) {
     const { name, gender, page = 1 } = req.query;
     const where = makeWhere(name, gender);
 
-    const mainModelData = {
+    const paginationModelData = {
       tableName: pageName,
       page,
       where,
     };
-    const main = new mainModel(mainModelData);
+    const pagination = new paginationModel(paginationModelData);
 
     const headers = ["Id", "Name", "Gender", "Age", "Birthdate"];
-    const table = await main.readTable();
-    const totalPages = await main.getTotalPages();
+    const table = await pagination.getPaginationTable();
+    const totalPages = await pagination.getTotalPages();
 
     const tableData = { headers, table };
     const pagingData = { pageName, page, totalPages };

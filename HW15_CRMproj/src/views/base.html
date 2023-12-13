@@ -4,19 +4,11 @@
     <meta charset="UTF-8" />
     <title>CRM project</title>
     <link rel="stylesheet" href="/css/style.css" />
+    {% block chartJS %} {% endblock %}
   </head>
   <body>
-    {% include "common/nav.html" %} 
+    {% include "common/nav.html" %}
 
-    <div id="content">
-      {% block search %}
-      {% endblock %}
-  
-      {% block table %} 
-      {% endblock %} 
-
-      {% block pagination %}
-      {% endblock %}
-    </div>
+    <div id="content">{% block search %} {% endblock %} {% block table %} {% endblock %} {% block pagination %} {% endblock %}</div>
   </body>
 </html>

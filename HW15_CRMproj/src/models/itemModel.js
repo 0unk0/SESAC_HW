@@ -13,7 +13,7 @@ class itemModel {
     const query = `SELECT strftime('%Y-%m', o.OrderAt) AS Month, SUM(UnitPrice) AS Revenue, COUNT(*) AS Count
     FROM 'order' o
     JOIN orderitem oi ON o.Id = oi.OrderId
-    JOIN item i ON i.id = oi.Itemid
+    JOIN item i ON i.id = oi.ItemId
     WHERE i.id = ?
     GROUP BY Month`;
     const params = [this.id];

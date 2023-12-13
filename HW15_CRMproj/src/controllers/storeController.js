@@ -1,18 +1,18 @@
-const mainModel = require("../models/mainModel.js");
+const paginationModel = require("../models/paginationModel.js");
 const storeModel = require("../models/storeModel.js");
 
 async function store(req, res) {
   try {
     const pageName = req.baseUrl.split("/")[1];
     const { page = 1 } = req.query;
-    const mainModelData = {
+    const paginationModelData = {
       tableName: pageName,
       page,
     };
-    const main = new mainModel(mainModelData);
+    const pagination = new paginationModel(paginationModelData);
 
-    const table = await main.readTable();
-    const totalPages = await main.getTotalPages();
+    const table = await pagination.getPaginationTable();
+    const totalPages = await pagination.getTotalPages();
 
     const headers = ["Id", "Type", "Name", "Address"];
 

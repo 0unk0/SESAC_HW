@@ -1,36 +1,74 @@
-{% extends "base.html" %}
-{% block table %}
-  <p>상품 정보</p>
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>Unit Price</th>
-    </thead>
-    <tbody>
-      {% for row in itemInfo %}
-      <tr>
-        <td>{{row.Name}}</td>
-        <td>{{row.UnitPrice}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% extends "base.html" %} {% block chartJS %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %} {% block table %}
+<p>상품 정보</p>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Unit Price</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{itemInfo.Name}}</td>
+      <td>{{itemInfo.UnitPrice}}</td>
+    </tr>
+  </tbody>
+</table>
 
-  <p>월간 매출액</p>
-  <table>
-    <thead>
-      <th>Month</th>
-      <th>Revenue</th>
-      <th>Count</th>
-    </thead>
-    <tbody>
-      {% for row in monthlyRevenue %}
-      <tr>
-        <td>{{row.Month}}</td>
-        <td>{{row.Revenue}}</td>
-        <td>{{row.Count}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<p>월간 매출액</p>
+<table>
+  <thead>
+    <th>Month</th>
+    <th>Revenue</th>
+    <th>Count</th>
+  </thead>
+  <tbody>
+    {% for row in monthlyRevenue %}
+    <tr>
+      <td>{{row.Month}}</td>
+      <td>{{row.Revenue}}</td>
+      <td>{{row.Count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>월별 매출액 그래프</p>
+<div>
+  <canvas id="monthlyRevenueGraph"></canvas>
+</div>
+<script>
+  const ctx = document.getElementById("monthlyRevenueGraph").getContext("2d");
+
+  var graphData = {{ monthlyRevenueGraph | dump | safe }};
+
+  var Graph = new Chart(ctx, {
+    data: {
+      labels: graphData.Month,
+      datasets: [
+        {
+          type: "line",
+          label: "Total Revenue",
+          data: graphData.Revenue,
+          borderColor: "rgb(54, 162, 235)",
+          order: 1,
+          y1: "RevenueAxis"
+        },
+        {
+          type: "bar",
+          label: "Item Count",
+          data: graphData.Count,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          order: 2,
+          y2: "CountAxis"
+        },
+      ],
+    },
+    options: {
+      // scales
+    }
+  });
+</script>
+
 {% endblock %}

@@ -10,7 +10,7 @@
       {% for row in tableData.table %}
       <tr>
         {% for header in tableData.headers %} {% if header == "Id" %}
-        <td><a href="/{{paginData.pageName}}/detail/{{row[header]}}">{{row[header]}}</a></td>
+        <td><a href="/{{pagingData.pageName}}/detail/{{row[header]}}">{{row[header]}}</a></td>
         {% else %}
         <td>{{row[header]}}</td>
         {% endif %} {% endfor %}
