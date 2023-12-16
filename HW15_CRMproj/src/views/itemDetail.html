@@ -52,7 +52,7 @@
           data: graphData.Revenue,
           borderColor: "rgb(54, 162, 235)",
           order: 1,
-          y1: "RevenueAxis"
+          yAxisID: "RevenueAxis"
         },
         {
           type: "bar",
@@ -61,12 +61,34 @@
           borderColor: "rgb(255, 99, 132)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           order: 2,
-          y2: "CountAxis"
+          yAxisID: "CountAxis"
         },
       ],
     },
     options: {
-      // scales
+      scales: {
+        RevenueAxis: {
+          beginAtZero: false,
+          display: true,
+          position: "left",
+          title: {
+            display: true,
+            text: "매출액"
+          },
+        },
+        CountAxis: {
+          beginAtZero: false,
+          display: true,
+          position: "right",
+          title: {
+            display: true,
+            text: "아이템 개수"
+          },
+          grid: {
+            drawOnChartArea: false,
+          }
+        }
+      }
     }
   });
 </script>
