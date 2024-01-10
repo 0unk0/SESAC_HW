@@ -1,12 +1,16 @@
 import WebSocket from "ws";
+import randomNameGenerator from "korean-random-names-generator";
 
-function setupWebSocket(app, sessionInfo, wsClients) {
+function setupWebSocket(app, wsClients) {
   app.ws("/chat", (ws, req) => {
     const clientIP = req.socket.remoteAddress;
+    if (!req.session.name) {
+      req.session.name = randomNameGenerator();
+    }
 
-    const username = sessionInfo.get(req.sessionID);
+    const username = req.session.name;
 
-    if (!wsClients.has(username)) {
+    if (username && !wsClients.has(username)) {
       console.log(`${username}(${clientIP}) 입장`);
 
       wsClients.set(username, ws);
@@ -19,14 +23,13 @@ function setupWebSocket(app, sessionInfo, wsClients) {
       const messageObj = { type, sender, content };
 
       wsClients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
+        if (client.readyState === WebSocket.OPEN && client !== ws) {
           client.send(JSON.stringify(messageObj));
         }
       });
     }
 
     ws.on("message", (message) => {
-      console.log(sessionInfo);
       console.log(`${username}(${clientIP}) : ${message.toString()}`);
 
       let parsedMessage = "";
@@ -39,9 +42,9 @@ function setupWebSocket(app, sessionInfo, wsClients) {
         return;
       }
 
-      wsClients.forEach((client, clientName) => {
+      wsClients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
-          const type = clientName === username ? "sent" : "received";
+          const type = client === ws ? "sent" : "received";
           const sender = username;
           const content = parsedMessage?.content;
 
