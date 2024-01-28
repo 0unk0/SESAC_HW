@@ -6,9 +6,13 @@ function getStations(req, res) {
   res.header("Content-Type", "application/json");
   res.sendFile(path.join(__dirname, "src", "data", "stationCodes.json"));
 }
+
 function getRecentRoutes(req, res) {
-  res.header("Content-Type", "application/json");
-  res.sendFile(path.join(__dirname, "src", "data", "stationCodes.json"));
+  if (!req.session.recentRoutes) {
+    res.status(404).send("Recent routes not found");
+  } else {
+    res.json(req.session.recentRoutes);
+  }
 }
 
 export default { getStations, getRecentRoutes };
